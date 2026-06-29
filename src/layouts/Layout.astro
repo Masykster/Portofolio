@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '../styles/global.css';
 
 interface Props {
@@ -7,13 +8,13 @@ interface Props {
 }
 
 const { 
-  title = 'GlassBento UI Builder - Create Stunning Glassmorphism Bento Grids',
-  description = 'Interactive WYSIWYG tool to design modern Bento Grid layouts with real-time glassmorphism styling, accessibility checks, and immediate code exports for Tailwind, CSS, and React.'
+  title = 'Masykster | Web Developer Portfolio',
+  description = 'Portofolio profesional Masykster, seorang Web Developer yang berspesialisasi dalam membangun aplikasi web modern, cepat, dan unik dengan estetika Neo-Brutalisme.'
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="id" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,8 +36,11 @@ const {
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+
+    <!-- Astro native Client Router for smooth page transitions -->
+    <ClientRouter />
   </head>
-  <body class="bg-gray-950 text-gray-100 min-h-screen antialiased">
+  <body class="bg-[#F4F4F0] text-[#000000] min-h-screen antialiased selection:bg-[#FFE600] selection:text-black">
     <slot />
   </body>
 </html>

@@ -1,6 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
 
 @import "tailwindcss";
+
+@theme {
+  --color-neo-bg: #F4F4F0;
+  --color-neo-yellow: #FFE600;
+  --color-neo-green: #39FF14;
+  --color-neo-blue: #00E5FF;
+  --color-neo-orange: #FF6B00;
+  --color-neo-black: #000000;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Space Grotesk', var(--font-sans);
+}
 
 :root {
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -9,115 +20,126 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: #030712;
-  color: #f3f4f6;
+  background-color: #F4F4F0;
+  color: #000000;
   overflow-x: hidden;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar in Neo-Brutalist Theme */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #F4F4F0;
+  border-left: 3px solid #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  background: #000000;
+  border: 2px solid #F4F4F0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #FF6B00;
 }
 
-/* Frosted Noise Overlay */
-.noise-overlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.04;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+/* ponytail: custom CSS class transitions for Neo-Brutalist components to ensure simple, performant CSS-only hover states */
+.neo-box {
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px 0px #000000;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-/* Mesh Gradient Blobs */
-.bg-mesh-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: #0a0a0f;
+.neo-box:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000000;
 }
 
-.mesh-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.45;
-  mix-blend-mode: screen;
-  animation: float-blob 25s infinite alternate ease-in-out;
+.neo-box:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px #000000;
 }
 
-.mesh-blob-1 {
-  background: radial-gradient(circle, #6366f1 0%, rgba(99, 102, 241, 0) 70%);
-  width: 600px;
-  height: 600px;
-  top: -10%;
-  left: -10%;
+.neo-box-lg {
+  background-color: #ffffff;
+  border: 4px solid #000000;
+  box-shadow: 8px 8px 0px 0px #000000;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.mesh-blob-2 {
-  background: radial-gradient(circle, #ec4899 0%, rgba(236, 72, 153, 0) 70%);
-  width: 500px;
-  height: 500px;
-  bottom: -10%;
-  right: -10%;
-  animation-delay: -5s;
-  animation-duration: 30s;
+.neo-box-lg:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 4px 4px 0px 0px #000000;
 }
 
-.mesh-blob-3 {
-  background: radial-gradient(circle, #06b6d4 0%, rgba(6, 182, 212, 0) 70%);
-  width: 450px;
-  height: 450px;
-  top: 30%;
-  left: 40%;
-  animation-delay: -10s;
-  animation-duration: 20s;
+.neo-box-lg:active {
+  transform: translate(8px, 8px);
+  box-shadow: 0px 0px 0px 0px #000000;
 }
 
-@keyframes float-blob {
-  0% {
-    transform: translate(0px, 0px) scale(1) rotate(0deg);
+.neo-input {
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  outline: none;
+  transition: background-color 0.15s ease;
+}
+
+.neo-input:focus {
+  background-color: #FFE600; /* Kuning Terang */
+}
+
+/* Infinite horizontal marquee styling */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 20s linear infinite;
+  will-change: transform;
+}
+
+/* Page load & scroll reveal animations (Spring physical effect using custom cubic-bezier) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
   }
-  33% {
-    transform: translate(50px, -70px) scale(1.1) rotate(120deg);
-  }
-  66% {
-    transform: translate(-30px, 40px) scale(0.9) rotate(240deg);
-  }
-  100% {
-    transform: translate(0px, 0px) scale(1) rotate(360deg);
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
-/* Glassmorphism custom classes */
-.glass-panel {
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Elements hide by default before reveal-in is applied via Intersection Observer */
+.reveal-on-scroll {
+  opacity: 0;
 }
 
-/* Kill ALL transitions during active resize for instant feedback */
-.is-resizing .glass-panel,
-.is-resizing .glass-panel * {
-  transition: none !important;
+.reveal-in {
+  animation: fadeInUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+}
+
+/* Stagger delay utility classes */
+.delay-75 { animation-delay: 75ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-450 { animation-delay: 450ms; }
+
+/* Custom Cartoon Cursors */
+html {
+  cursor: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 32 32'%3E%3Cpath d='M6 3l14 9-5 1 4 8-2 1-4-8-3 3Z' fill='black' transform='translate(2, 2)'/%3E%3Cpath d='M6 3l14 9-5 1 4 8-2 1-4-8-3 3Z' fill='%23FFE600' stroke='black' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 9 4, auto;
+}
+
+a, button, input, textarea, select, [role="button"], .neo-btn, .neo-box, .neo-box-lg {
+  cursor: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 32 32'%3E%3Cpath d='M10 2a2 2 0 0 1 2 2v6.5a1 1 0 0 0 2 0V7.5a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v1.5a2 2 0 0 1 2 2v3.5A7.5 7.5 0 0 1 16.5 22.5h-5A7.5 7.5 0 0 1 4 15V9a2 2 0 0 1 4 0v1.5a1 1 0 0 0 2 0V4a2 2 0 0 1 2-2z' fill='black' transform='translate(2, 2)'/%3E%3Cpath d='M10 2a2 2 0 0 1 2 2v6.5a1 1 0 0 0 2 0V7.5a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v1.5a2 2 0 0 1 2 2v3.5A7.5 7.5 0 0 1 16.5 22.5h-5A7.5 7.5 0 0 1 4 15V9a2 2 0 0 1 4 0v1.5a1 1 0 0 0 2 0V4a2 2 0 0 1 2-2z' fill='%2339FF14' stroke='black' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 15 3, pointer !important;
 }

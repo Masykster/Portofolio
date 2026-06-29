@@ -1,130 +1,207 @@
-Product Requirements Document (PRD)
+Product Requirement Document (PRD)
 
-Product Name: GlassBento UI Builder
+Website Portofolio Pribadi (Tema: Neo-Brutalisme)
 
-Version: 1.0 (Draft)
+1. Ringkasan Proyek (Project Overview)
 
-Platform: Web Application (Client-Side Static)
+1.1 Latar Belakang
 
-Deployment: GitHub Pages (via GitHub Actions)
+Website portofolio ini berfungsi sebagai representasi digital profesional untuk menampilkan karya, keahlian, pengalaman, dan kepribadian pemiliknya. Dengan mengadopsi tema Neo-Brutalisme, website ini bertujuan untuk tampil beda, berani, modern, dan menonjol di antara portofolio standar lainnya di industri kreatif dan teknologi.
 
-1. Executive Summary
+1.2 Tujuan Utama (Goals)
 
-GlassBento UI Builder adalah web-based developer tool yang memungkinkan desainer dan frontend engineer untuk merancang, memvisualisasikan, dan mengekstrak kode untuk komponen antarmuka bergaya Bento Grid dan Glassmorphism. Dengan memanfaatkan Islands Architecture dari Astro dan reaktivitas dari React, aplikasi ini menawarkan performa tingkat tinggi (Zero JS di halaman statis) dengan interaktivitas instan tanpa memerlukan backend atau database.
+Kredibilitas Profesional: Menyediakan platform yang kredibel bagi calon klien atau perekrut untuk melihat hasil kerja.
 
-2. Problem Statement & Vision
+Konversi Kontak: Memudahkan pengunjung untuk menghubungi pemilik portofolio secara langsung.
 
-Masalah:
-Membangun Bento Grid yang responsif seringkali membutuhkan perhitungan CSS Grid yang kompleks (menggunakan grid-template-areas atau span). Ditambah lagi, efek glassmorphism yang realistis membutuhkan kalibrasi berulang antara backdrop-filter, box-shadow, border transparan, dan background-color dengan opacity tertentu agar terlihat bagus di berbagai latar belakang, sekaligus tetap memenuhi standar aksesibilitas (kontras warna).
-Visi:
-Menyediakan lingkungan visual (WYSIWYG) di mana pengguna dapat mengonfigurasi tata letak dan efek visual secara presisi, lalu mengubahnya menjadi kode production-ready (CSS, Tailwind, atau React Component) dalam hitungan detik.
+Performa Tinggi: Memanfaatkan kecepatan luar biasa dari Astro JS untuk menghasilkan skor Core Web Vitals yang sempurna (100% pada Performance & SEO).
 
-3. User Personas
+Estetika Unik: Menerapkan gaya visual Neo-Brutalisme tanpa mengorbankan aksesibilitas dan kemudahan navigasi (UX).
 
-Dina, Junior UI/UX Designer: Memahami konsep visual desain modern, tetapi kesulitan menerjemahkan efek glassmorphism dan grid layout dari Figma ke dalam kode CSS yang akurat untuk diserahkan kepada developer.
+1.3 Target Audiens
 
-Raka, Frontend Developer (React/Tailwind): Ingin mempercepat alur kerja (workflow) pembuatan landing page. Ia tidak ingin menghafal utilitas Tailwind untuk grid spanning dan efek kaca yang kompleks.
+Calon Rekrutmen (HRD/Tech Recruiter)
 
-4. Comprehensive Feature Specifications
+Calon Klien (Freelance/Contract)
 
-4.1. Advanced Bento Grid Engine
+Sesama Developer & Desainer (Networking)
 
-Visual Grid Builder: Pengguna dapat menentukan ukuran dasar grid (mis. 12-column grid).
+2. Arsitektur Teknologi (Tech Stack)
 
-Drag-to-Span: Kemampuan untuk menarik (drag) ujung kotak komponen untuk membuatnya membentang (span) melintasi beberapa kolom atau baris.
+Komponen
 
-Responsive Breakpoints: Toggle untuk mengatur tata letak grid pada tampilan Desktop, Tablet, dan Mobile. Generator kode akan otomatis menghasilkan media queries atau prefix responsif Tailwind (mis. md:col-span-2).
+Teknologi Pilihan
 
-Strict Aesthetic Constraints: Border-radius dikunci pada skala proporsional (8px, 12px, 16px, 24px, 32px) untuk mencegah desain yang tidak seimbang.
+Alasan Pemilihan
 
-4.2. Precision Glassmorphism Engine
+Framework
 
-Multi-Layered Lighting: Tidak hanya backdrop-filter: blur, tetapi juga kontrol atas efek pencahayaan tepi (edge highlight) menggunakan inset box-shadow putih transparan.
+Astro JS (v4.x+)
 
-Noise Texture Overlay: Opsi toggle untuk menambahkan tekstur grain/noise SVG ultra-ringan di atas kaca untuk memberikan efek material frosted glass yang realistis.
+Sangat cepat karena berbasis Static Site Generation (SSG) secara default, minim JavaScript yang dikirim ke browser (Zero JS), dan developer experience yang luar biasa.
 
-Dynamic Backdrop Testing: Canvas preview harus memiliki opsi latar belakang yang beragam (Solid Color, Mesh Gradient animasi, dan Unsplash Image) untuk memastikan efek kaca tetap terlihat jelas di berbagai kondisi latar.
+Styling
 
-4.3. Accessibility (a11y) Guardrails
+Tailwind CSS
 
-Real-time Contrast Checker: Sistem otomatis mendeteksi rasio kontras teks (WCAG 2.1) di atas elemen glassmorphism terhadap latar belakang (background). Jika teks sulit dibaca, sistem akan memunculkan peringatan visual (warna merah/kuning) dan menyarankan perubahan opacity atau warna teks.
+Mempermudah implementasi komponen Neo-Brutalisme (seperti custom shadow, border tebal, warna saturated) menggunakan utility classes.
 
-4.4. Code Generation & Export Options
+Iconography
 
-Sistem export kode langsung (live code block dengan fitur syntax highlighting dan copy-to-clipboard). Tersedia output untuk:
+Lucide Icons / React Icons
 
-Vanilla HTML/CSS: Menggunakan CSS Grid mentah dan variabel (CSS Custom Properties).
+Konsisten, ringan, dan mudah diintegrasikan.
 
-Tailwind CSS: Menghasilkan markup HTML dengan utility classes yang bersih.
+Deployment
 
-React/JSX: Mengekspor sebagai komponen fungsional React (menggabungkan markup dan Tailwind).
+Vercel / Netlify / GitHub Pages
 
-5. Technical Architecture & Strategy
+Gratis, cepat, otomatis terintegrasi dengan repositori Git, serta dilengkapi CDN global.
 
-5.1. Tech Stack
+Form Handling
 
-Core Framework: Astro (v4+). Digunakan untuk routing statis, SEO, dan layouting dasar.
+Web3Forms / Formspree
 
-Interactive UI (Astro Islands): React 18. Dirender hanya pada area builder (client:load).
+Mengirim email langsung dari form statis tanpa perlu setup backend sendiri.
 
-State Management: Zustand. Dipilih karena lebih ringan dan boilerplate-free dibandingkan Redux, ideal untuk mengelola state yang kompleks (posisi grid, nilai slider warna, opsi ekspor).
+3. Panduan Desain (Neo-Brutalist Design System)
 
-Styling: Tailwind CSS.
+Gaya Neo-Brutalisme memiliki karakteristik visual yang sangat khas. Berikut adalah aturan desain yang harus diimplementasikan pada website ini:
 
-Icons & Assets: Lucide React (ikon) dan tata letak canvas SVG murni.
+3.1 Skema Warna (Color Palette)
 
-5.2. Data Flow
+Background Utama: Putih gading (#F4F4F0) atau warna pastel yang sangat pucat.
 
-Pengguna berinteraksi dengan kontrol React (Slider, Color Picker).
+Warna Aksen (Saturated):
 
-State diperbarui di Zustand store.
+Kuning Terang (#FFE600)
 
-Perubahan state memicu re-render pada komponen Preview Canvas dan komponen Code Generator secara bersamaan.
+Hijau Neon (#39FF14)
 
-Pustaka kompilasi string (logika kustom) menerjemahkan state Zustand menjadi string HTML/CSS/JSX mentah.
+Biru Elektrik (#00E5FF)
 
-5.3. Performance Budget
+Oranye menyala (#FF6B00)
 
-Lighthouse Score Target: 95+ (Performance, Accessibility, Best Practices, SEO).
+Border & Teks: Hitam Pekat (#000000).
 
-Initial JavaScript Payload: < 150KB (Gzipped). Astro harus memastikan komponen statis (Header, Footer, Landing copy) adalah Zero JS.
+3.2 Elemen UI Utama
 
-No Database: Aplikasi 100% client-side. Tidak ada latency server saat menghasilkan kode.
+Border: Minimal 3px atau 4px solid hitam (border-4 border-black).
 
-6. Non-Goals (Out of Scope for v1.0)
+Shadow (Bayangan): Menggunakan bayangan tegas tanpa blur (flat/hard shadow) yang bergeser ke kanan bawah.
 
-Untuk menjaga scope proyek tetap realistis dan dapat di-deploy ke GitHub Pages murni:
+Tailwind helper: shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] atau shadow-[8px_8px_0px_0px_rgba(0,0,0,1)].
 
-Tidak ada fitur User Authentication (Login/Register).
+Card: Sudut siku-siku (tidak menggunakan rounded border besar, maksimal rounded-md atau rounded-none).
 
-Tidak ada penyimpanan ke Cloud / Database (pengguna tidak bisa menyimpan preset desain mereka ke server, meskipun ke depannya bisa dipertimbangkan menggunakan localStorage peramban).
+Efek Hover: Elemen bergerak berlawanan arah bayangan (misal: saat hover, bayangan mengecil atau posisi elemen bergeser ke arah bayangan untuk efek "menekan").
 
-Tidak mendukung framework CSS lama seperti Bootstrap.
+3.3 Tipografi
 
-7. Development Milestones
+Headline / Title: Menggunakan font Sans-Serif tebal, asimetris, atau bergaya retro-komputer (contoh: Space Grotesk, Lexend Mega, atau Syne).
 
-Phase 1: Design & Architecture (Minggu 1)
+Body Text: Font yang sangat terbaca (contoh: Inter, Plus Jakarta Sans, atau Sora).
 
-Wireframing di Figma.
+4. Struktur Halaman & Fitur Utama
 
-Setup repositori, inisialisasi Astro + React + Tailwind + Zustand.
+Website ini akan dirancang sebagai Single Page Application (SPA) / Multi-Page yang efisien. Di bawah ini adalah modul-modul halaman yang dibutuhkan:
 
-Phase 2: The Glass Engine (Minggu 2)
+4.1 Header & Navigasi (sticky)
 
-Membuat algoritma pembuat efek kaca (blur, opacity, noise, shadow).
+Logo bertema Neo-Brutalisme (bisa berupa inisial nama dengan border tebal).
 
-Menghubungkan engine dengan UI kontrol (Slider, Color Picker).
+Menu Navigasi: Karya, Tentang, Keahlian, Kontak.
 
-Phase 3: The Bento Grid Engine (Minggu 3)
+Tombol CTA cepat: "Hubungi Saya" (dengan animasi hover tombol khas Brutalisme).
 
-Membangun fungsionalitas drag & atur ukuran (grid-spanning).
+4.2 Hero Section (First Impression)
 
-Menerapkan logika responsivitas.
+Judul besar yang menarik perhatian (misalnya: "Halo, Saya [Nama Kamu] — Pengembang Web yang Senang Membuat Hal-Hal Unik.").
 
-Phase 4: Output & Polish (Minggu 4)
+Teks sub-headline singkat tentang spesialisasi.
 
-Membangun generator teks untuk output kode (Tailwind/CSS/React).
+Badge atau tag keahlian dalam bentuk pill-box ber-border tebal.
 
-Mengintegrasikan algoritma pengecek kontras aksesibilitas.
+Tombol CTA utama (Lihat Portofolio) dan sekunder (Unduh CV).
 
-Uji coba responsivitas web tool dan peluncuran (CI/CD) ke GitHub Pages.
+4.3 Portofolio / Karya (Projects Grid)
+
+Daftar proyek pilihan ditampilkan dalam bentuk kartu (cards) Neo-Brutalisme.
+
+Setiap kartu proyek memuat:
+
+Gambar/Mockup Proyek (dengan filter grayscale yang berubah menjadi berwarna saat di-hover).
+
+Judul & Deskripsi Singkat.
+
+Tag Teknologi yang digunakan (React, Astro, Tailwind, dll.).
+
+Tombol tautan ke "Live Demo" dan "GitHub Repo".
+
+4.4 Keahlian & Teknologi (Skills Section)
+
+Menampilkan ikon teknologi yang dikuasai.
+
+Menggunakan grid layout yang asimetris dengan latar belakang warna aksen neo-brutalis yang berbeda untuk setiap kategori teknologi.
+
+4.5 Tentang Saya & Pengalaman (About & Timeline)
+
+Deskripsi singkat mengenai latar belakang, filosofi kerja, dan minat di luar koding.
+
+Riwayat kerja atau pendidikan disajikan dalam bentuk Timeline vertikal dengan garis pembatas tebal hitam dan penanda berupa kotak/lingkaran padat.
+
+4.6 Kontak (Contact Form)
+
+Formulir kontak sederhana (Nama, Email, Pesan).
+
+Input field menggunakan border tebal border-3 border-black dan fokus efek latar belakang berubah warna.
+
+Alternatif: Tautan langsung ke media sosial utama (GitHub, LinkedIn, Twitter/X) dalam bentuk tombol ikonik besar.
+
+4.7 Footer
+
+Teks hak cipta.
+
+Status ketersediaan kerja saat ini (misalnya: "Tersedia untuk proyek baru 🟢").
+
+5. Persyaratan Non-Fungsional (Non-Functional Requirements)
+
+Performa & Optimasi Gambar: Semua gambar wajib menggunakan komponen <Image /> bawaan Astro untuk konversi otomatis ke format .webp atau .avif.
+
+Aksesibilitas (a11y):
+
+Rasio kontras teks dengan latar belakang harus memenuhi standar WCAG AA (sangat terbaca karena kontras tinggi Neo-Brutalisme).
+
+Tag HTML semantik (<header>, <main>, <section>, <footer>, <article>).
+
+Responsive Design: Tampilan wajib dioptimalkan untuk perangkat mobile (responsive grid), mengingat elemen Neo-Brutalisme cenderung memakan banyak ruang visual.
+
+6. Rencana Pengembangan (Milestones)
+
+Fase 1: Inisialisasi & Setup
+
+Instalasi Astro JS, Tailwind CSS, dan integrasi Google Fonts (Space Grotesk & Inter).
+
+Konfigurasi file Tailwind untuk custom palette (warna aksen, border-width, custom shadow).
+
+Fase 2: Pembuatan Komponen UI Global
+
+Membuat komponen reusable: Button.astro, Card.astro, Badge.astro, Navigation.astro.
+
+Fase 3: Implementasi Layout & Konten
+
+Menyusun konten statis pada halaman utama (Hero, Portofolio, About, Skills, Contact).
+
+Fase 4: Integrasi Form & Animasi
+
+Integrasi pengiriman form kontak menggunakan Web3Forms.
+
+Penambahan interaksi micro-animation (efek hover neo-brutalis pada tombol dan card).
+
+Fase 5: Audit & Deployment
+
+Pengujian responsivitas pada perangkat mobile.
+
+Menjalankan audit Google Lighthouse (memastikan skor >95% di semua metrik).
+
+Deploy ke platform hosting (Vercel/Netlify).
