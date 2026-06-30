@@ -7,7 +7,6 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://Masykster.github.io',
-  base: '/GlassBento',
   integrations: [react()],
 
   vite: {

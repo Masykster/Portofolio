@@ -854,7 +854,7 @@ export function ClawCaptcha({
                 </button>
                 <div className="clawcap-info-head">
                   <span className="clawcap-info-tile">
-                    <img src="/playcaptcha.svg" alt="" aria-hidden="true" />
+                    <img src={import.meta.env.BASE_URL + "playcaptcha.svg"} alt="" aria-hidden="true" />
                   </span>
                   <h4 className="clawcap-info-title">
                     PlayCaptcha <span className="clawcap-info-ver">v1</span>

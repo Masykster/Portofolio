@@ -29,7 +29,7 @@ export default function ClawCaptchaWrapper() {
     <ClawCaptcha
       onVerify={handleVerify}
       title="Tangkap Pokemon-nya!"
-      assetBase="/toys/"
+      assetBase={import.meta.env.BASE_URL + "toys/"}
     />
   );
 }
