@@ -21,6 +21,13 @@
 :root {
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* playcaptcha custom variables styled for Neo-Brutalist look */
+  --clawcap-bg: #ffffff;
+  --clawcap-ink: #000000;
+  --clawcap-muted: #555555;
+  --clawcap-accent: #00E5FF; /* Biru Elektrik */
+  --clawcap-action: #FF6B00; /* Oranye menyala */
 }
 
 body {
@@ -146,5 +153,32 @@ html {
 }
 
 a, button, input, textarea, select, [role="button"], .neo-btn, .neo-box, .neo-box-lg {
+  cursor: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 32 32'%3E%3Cpath d='M10 2a2 2 0 0 1 2 2v6.5a1 1 0 0 0 2 0V7.5a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v1.5a2 2 0 0 1 2 2v3.5A7.5 7.5 0 0 1 16.5 22.5h-5A7.5 7.5 0 0 1 4 15V9a2 2 0 0 1 4 0v1.5a1 1 0 0 0 2 0V4a2 2 0 0 1 2-2z' fill='black' transform='translate(2, 2)'/%3E%3Cpath d='M10 2a2 2 0 0 1 2 2v6.5a1 1 0 0 0 2 0V7.5a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v1.5a2 2 0 0 1 2 2v3.5A7.5 7.5 0 0 1 16.5 22.5h-5A7.5 7.5 0 0 1 4 15V9a2 2 0 0 1 4 0v1.5a1 1 0 0 0 2 0V4a2 2 0 0 1 2-2z' fill='%2339FF14' stroke='black' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 15 3, pointer !important;
+}
+
+/* Custom overrides to force playcaptcha to be Neo-Brutalist */
+.clawcap {
+  border: 4px solid #000000 !important;
+  box-shadow: 8px 8px 0px 0px #000000 !important;
+  border-radius: 0px !important;
+}
+
+.clawcap-info-card, .clawcap-info-tile {
+  border: 3px solid #000000 !important;
+  border-radius: 0px !important;
+}
+
+.clawcap-info-done {
+  border: 3px solid #000000 !important;
+  box-shadow: 4px 4px 0px 0px #000000 !important;
+  border-radius: 0px !important;
+}
+
+.clawcap-info-done:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px 0px #000000 !important;
+}
+
+.clawcap button, .clawcap .cc-joy, .clawcap .cc-action {
   cursor: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 32 32'%3E%3Cpath d='M10 2a2 2 0 0 1 2 2v6.5a1 1 0 0 0 2 0V7.5a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v1.5a2 2 0 0 1 2 2v3.5A7.5 7.5 0 0 1 16.5 22.5h-5A7.5 7.5 0 0 1 4 15V9a2 2 0 0 1 4 0v1.5a1 1 0 0 0 2 0V4a2 2 0 0 1 2-2z' fill='black' transform='translate(2, 2)'/%3E%3Cpath d='M10 2a2 2 0 0 1 2 2v6.5a1 1 0 0 0 2 0V7.5a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v1.5a2 2 0 0 1 2 2v3.5A7.5 7.5 0 0 1 16.5 22.5h-5A7.5 7.5 0 0 1 4 15V9a2 2 0 0 1 4 0v1.5a1 1 0 0 0 2 0V4a2 2 0 0 1 2-2z' fill='%2339FF14' stroke='black' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 15 3, pointer !important;
 }

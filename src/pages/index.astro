@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ClawCaptchaWrapper from '../components/ClawCaptchaWrapper';
 
 // Replaced with User's Real Projects
 const projects = [
@@ -122,6 +123,18 @@ const timeline = [
 ---
 
 <Layout title="Masykster | Web Developer Portfolio" description="Portofolio pribadi Masykster - Web Developer profesional dengan keahlian di Astro, React, dan gaya desain Neo-Brutalisme yang unik.">
+  <!-- Captcha Entrance Gate Overlay -->
+  <div id="captcha-gate" class="fixed inset-0 z-[100] bg-[#F4F4F0] flex flex-col items-center justify-center p-4 transition-all duration-500 ease-out select-none">
+    <div class="w-full max-w-md flex flex-col items-center">
+      <ClawCaptchaWrapper client:load />
+      
+      <!-- Skip button outside the box -->
+      <button id="skip-btn" class="mt-6 font-extrabold text-sm sm:text-base uppercase tracking-wider underline decoration-3 underline-offset-4 hover:text-[#FF6B00] transition-all cursor-pointer">
+        Skip Captcha &rarr;
+      </button>
+    </div>
+  </div>
+
   <main class="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-8 font-sans overflow-hidden">
     
     <!-- HEADER SECTION -->
@@ -635,5 +648,49 @@ const timeline = [
     revealElements.forEach(el => observer.observe(el));
   };
 
-  document.addEventListener('astro:page-load', initializeAnimations);
+  const handlePageLoad = () => {
+    initializeAnimations();
+    
+    // Captcha Gate unlock handler
+    const gate = document.getElementById('captcha-gate');
+    const skipBtn = document.getElementById('skip-btn');
+    
+    const unlockGate = (immediate = false) => {
+      if (!gate) return;
+      if (immediate) {
+        gate.style.display = 'none';
+        gate.remove();
+        document.body.style.overflow = '';
+      } else {
+        gate.style.opacity = '0';
+        gate.style.pointerEvents = 'none';
+        setTimeout(() => {
+          gate.remove();
+          document.body.style.overflow = '';
+        }, 500);
+      }
+    };
+
+    // Lock page scroll initially if gate exists in DOM and sessionStorage is not set
+    const verifiedSession = sessionStorage.getItem('playcaptcha-verified');
+    if (gate && verifiedSession !== 'true') {
+      document.body.style.overflow = 'hidden';
+    } else if (gate && verifiedSession === 'true') {
+      unlockGate(true);
+    }
+
+    if (skipBtn) {
+      skipBtn.addEventListener('click', () => {
+        sessionStorage.setItem('playcaptcha-verified', 'true');
+        unlockGate(false);
+      });
+    }
+
+    window.addEventListener('captcha-verified', (e: any) => {
+      const immediate = e.detail?.immediate || false;
+      unlockGate(immediate);
+    });
+  };
+
+  document.addEventListener('astro:page-load', handlePageLoad);
 </script>
