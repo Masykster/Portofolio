@@ -124,12 +124,12 @@ const timeline = [
 
 <Layout title="Masykster | Web Developer Portfolio" description="Portofolio pribadi Masykster - Web Developer profesional dengan keahlian di Astro, React, dan gaya desain Neo-Brutalisme yang unik.">
   <!-- Captcha Entrance Gate Overlay -->
-  <div id="captcha-gate" class="fixed inset-0 z-[100] bg-[#F4F4F0] flex flex-col items-center justify-center p-4 transition-all duration-500 ease-out select-none">
-    <div class="w-full max-w-md flex flex-col items-center">
+  <div id="captcha-gate" class="fixed inset-0 z-[100] bg-[#F4F4F0] flex flex-col items-center justify-start sm:justify-center p-4 overflow-y-auto py-8 sm:py-12 transition-all duration-500 ease-out select-none">
+    <div class="w-full max-w-md flex flex-col items-center my-auto">
       <ClawCaptchaWrapper client:load />
       
       <!-- Skip button outside the box -->
-      <button id="skip-btn" class="mt-6 font-extrabold text-sm sm:text-base uppercase tracking-wider underline decoration-3 underline-offset-4 hover:text-[#FF6B00] transition-all cursor-pointer">
+      <button id="skip-btn" class="mt-6 sm:mt-8 font-extrabold text-sm sm:text-base uppercase tracking-wider underline decoration-3 underline-offset-4 hover:text-[#FF6B00] transition-all cursor-pointer">
         Skip Captcha &rarr;
       </button>
     </div>

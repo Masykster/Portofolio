@@ -161,6 +161,32 @@ a, button, input, textarea, select, [role="button"], .neo-btn, .neo-box, .neo-bo
   border: 4px solid #000000 !important;
   box-shadow: 8px 8px 0px 0px #000000 !important;
   border-radius: 0px !important;
+
+  /* Responsive scaling to make sure skip button is visible on mobile and smaller viewports */
+  transform: scale(0.9);
+  transform-origin: center center;
+  margin: -20px 0;
+}
+
+@media (max-height: 800px) {
+  .clawcap {
+    transform: scale(0.8);
+    margin: -45px 0;
+  }
+}
+
+@media (max-height: 700px) {
+  .clawcap {
+    transform: scale(0.7);
+    margin: -70px 0;
+  }
+}
+
+@media (max-height: 600px) {
+  .clawcap {
+    transform: scale(0.6);
+    margin: -95px 0;
+  }
 }
 
 .clawcap-info-card, .clawcap-info-tile {
