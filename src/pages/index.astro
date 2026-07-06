@@ -661,12 +661,14 @@ const timeline = [
         gate.style.display = 'none';
         gate.remove();
         document.body.style.overflow = '';
+        window.dispatchEvent(new CustomEvent('lenis-start'));
       } else {
         gate.style.opacity = '0';
         gate.style.pointerEvents = 'none';
         setTimeout(() => {
           gate.remove();
           document.body.style.overflow = '';
+          window.dispatchEvent(new CustomEvent('lenis-start'));
         }, 500);
       }
     };
@@ -675,6 +677,7 @@ const timeline = [
     const verifiedSession = sessionStorage.getItem('playcaptcha-verified');
     if (gate && verifiedSession !== 'true') {
       document.body.style.overflow = 'hidden';
+      window.dispatchEvent(new CustomEvent('lenis-stop'));
     } else if (gate && verifiedSession === 'true') {
       unlockGate(true);
     }
