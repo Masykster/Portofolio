@@ -37,33 +37,39 @@ const {
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
 
-    <!-- Dark Mode Inline Theme Detection -->
+    <!-- Inline Dark Mode initialization script to prevent FOUC -->
     <script is:inline>
-      const setDarkClass = () => {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
+      const getTheme = () => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
         }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
       };
-      setDarkClass();
-      document.addEventListener('astro:page-load', setDarkClass);
+
+      const theme = getTheme();
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     </script>
 
     <!-- Astro native Client Router for smooth page transitions -->
     <ClientRouter />
   </head>
-  <body class="bg-[#F4F4F0] text-[#000000] min-h-screen antialiased selection:bg-[#FFE600] selection:text-black">
+  <body class="bg-[#F4F4F0] text-[#000000] min-h-screen antialiased selection:bg-[#FFE600] selection:text-black transition-colors duration-200">
     <slot />
 
-    <!-- Smooth scrolling library Lenis -->
+    <!-- Smooth scrolling library Lenis & Theme Toggle -->
     <script>
       import Lenis from 'lenis';
 
       let lenis: Lenis | null = null;
 
-      const initLenis = () => {
+      const initLayout = () => {
         if (lenis) {
           lenis.destroy();
         }
@@ -94,9 +100,18 @@ const {
         window.addEventListener('lenis-start', () => {
           lenis?.start();
         });
+
+        // Dark Mode Toggle Button Event Listener
+        const themeBtn = document.getElementById('theme-toggle');
+        if (themeBtn) {
+          themeBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+          });
+        }
       };
 
-      document.addEventListener('astro:page-load', initLenis);
+      document.addEventListener('astro:page-load', initLayout);
     </script>
   </body>
 </html>

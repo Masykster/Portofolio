@@ -132,6 +132,72 @@ body {
   box-shadow: 5px 5px 0px 0px #000000;
 }
 
+/* Dark Mode Neo-Brutalist Styling */
+html.dark body {
+  background-color: #121212 !important;
+  color: #FFFFFF !important;
+}
+
+html.dark .neo-box {
+  background-color: #1E1E1E !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 4px 4px 0px 0px #FFFFFF !important;
+}
+
+html.dark .neo-box:hover {
+  box-shadow: 2px 2px 0px 0px #FFFFFF !important;
+}
+
+html.dark .neo-box-lg {
+  background-color: #1E1E1E !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 6px 6px 0px 0px #FFFFFF !important;
+}
+
+html.dark .neo-box-lg:hover {
+  box-shadow: 3px 3px 0px 0px #FFFFFF !important;
+}
+
+html.dark .neo-btn {
+  border-color: #FFFFFF !important;
+  box-shadow: 4px 4px 0px 0px #FFFFFF !important;
+}
+
+html.dark .neo-btn:hover {
+  box-shadow: 2px 2px 0px 0px #FFFFFF !important;
+}
+
+html.dark .neo-input {
+  background-color: #1E1E1E !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 3px 3px 0px 0px #FFFFFF !important;
+}
+
+html.dark .neo-input:focus {
+  background-color: #2D2D2D !important;
+  box-shadow: 5px 5px 0px 0px #FFE600 !important;
+}
+
+html.dark .neo-badge {
+  border-color: #FFFFFF !important;
+  box-shadow: 2px 2px 0px 0px #FFFFFF !important;
+}
+
+html.dark .text-gray-700, html.dark .text-gray-600 {
+  color: #D1D5DB !important;
+}
+
+html.dark .text-gray-800 {
+  color: #F3F4F6 !important;
+}
+
+html.dark #captcha-gate {
+  background-color: #121212 !important;
+}
+
 /* Infinite horizontal marquee styling */
 @keyframes marquee {
   0% { transform: translateX(0); }
@@ -256,56 +322,4 @@ html.lenis body {
 
 .lenis-scrolling iframe {
   pointer-events: none;
-}
-
-/* Neo-Brutalist Dark Mode Theme Overrides */
-html.dark {
-  background-color: #121212 !important;
-  color: #F4F4F0 !important;
-}
-
-html.dark body {
-  background-color: #121212 !important;
-  color: #F4F4F0 !important;
-}
-
-html.dark .neo-box,
-html.dark .neo-box-lg {
-  background-color: #1E1E22 !important;
-  color: #FFFFFF !important;
-  border-color: #000000 !important;
-}
-
-html.dark .neo-input {
-  background-color: #1E1E22 !important;
-  color: #FFFFFF !important;
-  border-color: #000000 !important;
-}
-
-html.dark .neo-input:focus {
-  background-color: #FFE600 !important;
-  color: #000000 !important;
-}
-
-html.dark .text-gray-700,
-html.dark .text-gray-800,
-html.dark .text-gray-600 {
-  color: #D4D4D8 !important;
-}
-
-html.dark .bg-white {
-  background-color: #1E1E22 !important;
-  color: #FFFFFF !important;
-}
-
-html.dark .bg-gray-50,
-html.dark .bg-gray-100,
-html.dark .bg-gray-200 {
-  background-color: #27272A !important;
-  color: #F4F4F0 !important;
-}
-
-html.dark #captcha-gate {
-  background-color: #121212 !important;
-  color: #F4F4F0 !important;
 }

@@ -59,10 +59,24 @@ const certificates = [
         <a href="/projek" class="neo-btn bg-white text-black px-4 py-2 text-xs sm:text-sm font-extrabold border-2 border-black">
           Projek &rarr;
         </a>
-        <button id="theme-toggle" type="button" aria-label="Toggle Theme" class="neo-btn bg-[#FFE600] text-black text-xs sm:text-sm px-3.5 py-2 sm:px-4 sm:py-2 font-extrabold flex items-center space-x-1.5 border-2 border-black cursor-pointer select-none">
-          <span id="theme-toggle-icon">🌙</span>
-          <span id="theme-toggle-text" class="uppercase font-heading">Dark</span>
+        <button
+          id="theme-toggle"
+          aria-label="Toggle Dark Mode"
+          class="neo-btn bg-white dark:bg-[#1E1E1E] text-black dark:text-white w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center border-2 border-black dark:border-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[1px] hover:translate-y-[1px] transition-all cursor-pointer"
+        >
+          <!-- Moon Icon (Light mode) -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 block dark:hidden text-black stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+          <!-- Sun Icon (Dark mode) -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 hidden dark:block text-[#FFE600] stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
         </button>
+        <span class="neo-badge bg-[#00E5FF] text-black text-xs uppercase font-extrabold hidden sm:inline-block">
+          {certificates.length} Sertifikat Resmi
+        </span>
       </div>
     </div>
 
@@ -131,33 +145,4 @@ const certificates = [
     </div>
 
   </main>
-
-  <script>
-    const initThemeToggle = () => {
-      const toggleBtn = document.getElementById('theme-toggle');
-      const iconEl = document.getElementById('theme-toggle-icon');
-      const textEl = document.getElementById('theme-toggle-text');
-
-      const updateUI = (isDark: boolean) => {
-        if (iconEl && textEl) {
-          iconEl.textContent = isDark ? '☀️' : '🌙';
-          textEl.textContent = isDark ? 'Light' : 'Dark';
-        }
-      };
-
-      const isDark = document.documentElement.classList.contains('dark');
-      updateUI(isDark);
-
-      if (toggleBtn) {
-        toggleBtn.onclick = () => {
-          const willBeDark = !document.documentElement.classList.contains('dark');
-          document.documentElement.classList.toggle('dark', willBeDark);
-          localStorage.setItem('theme', willBeDark ? 'dark' : 'light');
-          updateUI(willBeDark);
-        };
-      }
-    };
-
-    document.addEventListener('astro:page-load', initThemeToggle);
-  </script>
 </Layout>
