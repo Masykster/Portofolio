@@ -21,6 +21,22 @@
     --border: #000000;
     --shadow: 4px 4px 0px 0px #000000;
   }
+
+  /* Global dark mode text contrast fixes */
+  html.dark .text-gray-700,
+  html.dark .text-gray-800,
+  html.dark .text-gray-600 {
+    color: #E5E7EB; /* Tailwind gray-200 for crystal clear legibility in dark mode */
+  }
+
+  html.dark .text-gray-500 {
+    color: #9CA3AF;
+  }
+
+  html.dark .bg-gray-100 {
+    background-color: #374151;
+    color: #F9FAFB;
+  }
 }
 
 body {
