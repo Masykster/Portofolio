@@ -257,3 +257,55 @@ html.lenis body {
 .lenis-scrolling iframe {
   pointer-events: none;
 }
+
+/* Neo-Brutalist Dark Mode Theme Overrides */
+html.dark {
+  background-color: #121212 !important;
+  color: #F4F4F0 !important;
+}
+
+html.dark body {
+  background-color: #121212 !important;
+  color: #F4F4F0 !important;
+}
+
+html.dark .neo-box,
+html.dark .neo-box-lg {
+  background-color: #1E1E22 !important;
+  color: #FFFFFF !important;
+  border-color: #000000 !important;
+}
+
+html.dark .neo-input {
+  background-color: #1E1E22 !important;
+  color: #FFFFFF !important;
+  border-color: #000000 !important;
+}
+
+html.dark .neo-input:focus {
+  background-color: #FFE600 !important;
+  color: #000000 !important;
+}
+
+html.dark .text-gray-700,
+html.dark .text-gray-800,
+html.dark .text-gray-600 {
+  color: #D4D4D8 !important;
+}
+
+html.dark .bg-white {
+  background-color: #1E1E22 !important;
+  color: #FFFFFF !important;
+}
+
+html.dark .bg-gray-50,
+html.dark .bg-gray-100,
+html.dark .bg-gray-200 {
+  background-color: #27272A !important;
+  color: #F4F4F0 !important;
+}
+
+html.dark #captcha-gate {
+  background-color: #121212 !important;
+  color: #F4F4F0 !important;
+}

@@ -138,13 +138,14 @@ if (!projects.length) {
         <span>Kembali ke Beranda</span>
       </a>
 
-      <div class="flex items-center space-x-4">
+      <div class="flex items-center space-x-3 sm:space-x-4">
         <a href="/sertifikat" class="neo-btn bg-white text-black px-4 py-2 text-xs sm:text-sm font-extrabold border-2 border-black">
           Sertifikat &rarr;
         </a>
-        <span class="neo-badge bg-[#00E5FF] text-black text-xs uppercase font-extrabold hidden sm:inline-block">
-          {projects.length} Repositori GitHub
-        </span>
+        <button id="theme-toggle" type="button" aria-label="Toggle Theme" class="neo-btn bg-[#FFE600] text-black text-xs sm:text-sm px-3.5 py-2 sm:px-4 sm:py-2 font-extrabold flex items-center space-x-1.5 border-2 border-black cursor-pointer select-none">
+          <span id="theme-toggle-icon">🌙</span>
+          <span id="theme-toggle-text" class="uppercase font-heading">Dark</span>
+        </button>
       </div>
     </div>
 
@@ -227,4 +228,33 @@ if (!projects.length) {
     </div>
 
   </main>
+
+  <script>
+    const initThemeToggle = () => {
+      const toggleBtn = document.getElementById('theme-toggle');
+      const iconEl = document.getElementById('theme-toggle-icon');
+      const textEl = document.getElementById('theme-toggle-text');
+
+      const updateUI = (isDark: boolean) => {
+        if (iconEl && textEl) {
+          iconEl.textContent = isDark ? '☀️' : '🌙';
+          textEl.textContent = isDark ? 'Light' : 'Dark';
+        }
+      };
+
+      const isDark = document.documentElement.classList.contains('dark');
+      updateUI(isDark);
+
+      if (toggleBtn) {
+        toggleBtn.onclick = () => {
+          const willBeDark = !document.documentElement.classList.contains('dark');
+          document.documentElement.classList.toggle('dark', willBeDark);
+          localStorage.setItem('theme', willBeDark ? 'dark' : 'light');
+          updateUI(willBeDark);
+        };
+      }
+    };
+
+    document.addEventListener('astro:page-load', initThemeToggle);
+  </script>
 </Layout>

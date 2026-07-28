@@ -263,9 +263,10 @@ const certificates = [
         </nav>
 
         <div>
-          <a href="#kontak" class="neo-btn bg-[#FF6B00] text-white text-xs sm:text-sm px-4 py-2 sm:px-5 sm:py-2.5">
-            Hubungi Saya
-          </a>
+          <button id="theme-toggle" type="button" aria-label="Toggle Theme" class="neo-btn bg-[#FFE600] text-black text-xs sm:text-sm px-3.5 py-2 sm:px-4 sm:py-2.5 font-extrabold flex items-center space-x-1.5 border-2 border-black cursor-pointer select-none">
+            <span id="theme-toggle-icon">🌙</span>
+            <span id="theme-toggle-text" class="uppercase font-heading">Dark</span>
+          </button>
         </div>
       </div>
     </header>
@@ -842,10 +843,33 @@ const certificates = [
       });
     }
 
-    window.addEventListener('captcha-verified', (e: any) => {
-      const immediate = e.detail?.immediate || false;
-      unlockGate(immediate);
-    });
+    // Dark mode theme toggle handler
+    const initThemeToggle = () => {
+      const toggleBtn = document.getElementById('theme-toggle');
+      const iconEl = document.getElementById('theme-toggle-icon');
+      const textEl = document.getElementById('theme-toggle-text');
+
+      const updateUI = (isDark: boolean) => {
+        if (iconEl && textEl) {
+          iconEl.textContent = isDark ? '☀️' : '🌙';
+          textEl.textContent = isDark ? 'Light' : 'Dark';
+        }
+      };
+
+      const isDark = document.documentElement.classList.contains('dark');
+      updateUI(isDark);
+
+      if (toggleBtn) {
+        toggleBtn.onclick = () => {
+          const willBeDark = !document.documentElement.classList.contains('dark');
+          document.documentElement.classList.toggle('dark', willBeDark);
+          localStorage.setItem('theme', willBeDark ? 'dark' : 'light');
+          updateUI(willBeDark);
+        };
+      }
+    };
+
+    initThemeToggle();
   };
 
   document.addEventListener('astro:page-load', handlePageLoad);

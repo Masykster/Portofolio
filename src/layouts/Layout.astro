@@ -37,6 +37,20 @@ const {
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
 
+    <!-- Dark Mode Inline Theme Detection -->
+    <script is:inline>
+      const setDarkClass = () => {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      };
+      setDarkClass();
+      document.addEventListener('astro:page-load', setDarkClass);
+    </script>
+
     <!-- Astro native Client Router for smooth page transitions -->
     <ClientRouter />
   </head>
