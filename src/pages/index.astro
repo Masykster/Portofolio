@@ -383,151 +383,141 @@ const timeline = [
               <div class="grid grid-cols-2 gap-3.5">
                 {category.skills.map((skill) => (
                   <div class="flex items-center space-x-2.5 p-2 border-2 border-black bg-gray-50 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-[#FFE600]/10 transition-colors font-bold text-[11px] sm:text-xs">
-                    {/* Render corresponding SVG Icon */}
+                    {/* Render corresponding official W3 standard brand SVG Icons */}
                     {skill.icon === 'html' && (
-                      <svg class="w-5 h-5 text-[#E34F26]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2l8 2-1.5 14L12 22l-6.5-4L4 4z" />
-                        <path d="M12 6h4l-.5 5H12" />
-                        <path d="M8 8h8" />
-                        <path d="M12 11H9.5l-.5 4.5 3 2 3-2" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#E34F26">
+                        <path d="M1.5 0h21l-1.91 21.563L11.97 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.625 10.139.002.23-2.625H5.405l.692 7.748h8.736l-.325 3.655-2.547.69-2.558-.69-.163-1.832H6.561l.322 3.626 5.077 1.408 5.084-1.408.69-7.699H8.531z" />
                       </svg>
                     )}
                     {skill.icon === 'css' && (
-                      <svg class="w-5 h-5 text-[#1572B6]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2l8 2-1.5 14L12 22l-6.5-4L4 4z" />
-                        <path d="M12 6h4l-.5 5H9.5" />
-                        <path d="M12 11h4l-.5 5-3.5 2-3.5-2 .5-4.5" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#1572B6">
+                        <path d="M1.5 0h21l-1.91 21.563L11.97 24l-8.564-2.438L1.5 0zm5.114 4.5h10.74l-.232 2.625H9.477l.232 2.625h7.202l-.698 7.781-4.253 1.172-4.244-1.172-.284-3.156h2.625l.138 1.547 1.765.474 1.774-.474.195-2.156H6.155L5.614 4.5z" />
                       </svg>
                     )}
                     {skill.icon === 'js' && (
-                      <svg class="w-5 h-5 text-[#F7DF1E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M9 17v-2a2 2 0 0 1 4 0v4" />
-                        <path d="M17 11h-4" />
-                        <path d="M15 15v-4" />
+                      <svg class="w-5 h-5 flex-shrink-0 rounded-xs overflow-hidden" viewBox="0 0 24 24">
+                        <rect width="24" height="24" fill="#F7DF1E" />
+                        <path d="M12.75 18.5c.34.6.87 1.05 1.72 1.05.77 0 1.25-.38 1.25-.91 0-.63-.5-1.05-1.34-1.42l-.46-.2c-1.32-.56-2.2-1.28-2.2-2.73 0-1.46 1.15-2.58 2.94-2.58 1.28 0 2.2.45 2.82 1.5l-1.26.8c-.37-.62-.77-.87-1.46-.87-.64 0-1.04.38-1.04.83 0 .5.38.83 1.2.18l.47.2c1.47.62 2.36 1.34 2.36 2.82 0 1.63-1.28 2.76-3.23 2.76-1.8 0-2.82-.77-3.48-1.92l1.26-.8zm-5.71.18c.24.42.5.76.99.76.5 0 .82-.2.82-.93V11.8h1.76v6.62c0 1.62-.95 2.37-2.38 2.37-1.3 0-2.07-.66-2.45-1.5l1.26-.8z" fill="#000" />
                       </svg>
                     )}
                     {skill.icon === 'ts' && (
-                      <svg class="w-5 h-5 text-[#3178C6]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M8 7h4M10 7v10" />
-                        <path d="M15 13a2 2 0 0 0 2-2 2 2 0 0 0-2-2h-1v6" />
+                      <svg class="w-5 h-5 flex-shrink-0 rounded-xs overflow-hidden" viewBox="0 0 24 24">
+                        <rect width="24" height="24" fill="#3178C6" />
+                        <path d="M12.612 11.233h-2.302v8.52h-2.55v-8.52H5.458V9.117h7.154v2.116zm6.89 4.394c0 2.658-2.012 4.25-4.757 4.25-2.235 0-3.957-1.127-4.475-2.73l2.257-.93c.313.916 1.173 1.543 2.193 1.543 1.241 0 2.115-.626 2.115-1.745 0-1.018-.625-1.52-2.115-2.055l-.94-.335c-2.057-.737-3.153-1.854-3.153-3.705 0-2.324 1.83-3.914 4.34-3.914 2.115 0 3.593 1.05 4.107 2.44l-2.116.915c-.29-.78-1.004-1.228-1.92-1.228-1.094 0-1.763.558-1.763 1.45 0 .848.513 1.25 1.763 1.7l.938.334c2.254.804 3.483 1.853 3.483 3.993z" fill="#fff" />
                       </svg>
                     )}
                     {skill.icon === 'react' && (
-                      <svg class="w-5 h-5 text-[#61DAFB]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(30 12 12)" />
-                        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(90 12 12)" />
-                        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(150 12 12)" />
-                        <circle cx="12" cy="12" r="1.5" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="-11.5 -10.23174 23 20.46348">
+                        <circle cx="0" cy="0" r="2.05" fill="#61DAFB" />
+                        <g stroke="#61DAFB" stroke-width="1" fill="none">
+                          <ellipse rx="11" ry="4.2" />
+                          <ellipse rx="11" ry="4.2" transform="rotate(60)" />
+                          <ellipse rx="11" ry="4.2" transform="rotate(120)" />
+                        </g>
                       </svg>
                     )}
                     {skill.icon === 'next' && (
-                      <svg class="w-5 h-5 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M16 16L8 8M16 8v8" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 180 180" fill="none">
+                        <mask id="next_mask" maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180">
+                          <circle cx="90" cy="90" r="90" fill="#000" />
+                        </mask>
+                        <g mask="url(#next_mask)">
+                          <circle cx="90" cy="90" r="90" fill="#000" />
+                          <path d="M149.508 157.52L69.142 54H54v72h14.4V73.837l66.866 86.822a90.158 90.158 0 0014.242-3.139z" fill="url(#next_grad)" />
+                          <path d="M115.2 54v72h14.4V54h-14.4z" fill="#FFF" />
+                          <defs>
+                            <linearGradient id="next_grad" x1="109" y1="116.5" x2="144.5" y2="160.5" gradientUnits="userSpaceOnUse">
+                              <stop stop-color="#FFF" />
+                              <stop offset="1" stop-color="#FFF" stop-opacity="0" />
+                            </linearGradient>
+                          </defs>
+                        </g>
                       </svg>
                     )}
                     {skill.icon === 'vue' && (
-                      <svg class="w-5 h-5 text-[#4FC08D]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M2 3l10 17L22 3" />
-                        <path d="M6 3l6 10 6-10" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 261.76 226.69">
+                        <path d="M161.096.001l-30.225 52.351L100.647.001H-.005l130.877 226.688L261.749.001z" fill="#41B883" />
+                        <path d="M161.096.001l-30.225 52.351L100.647.001H52.247l78.625 136.181L209.497.001z" fill="#34495E" />
                       </svg>
                     )}
                     {skill.icon === 'inertia' && (
-                      <svg class="w-5 h-5 text-[#9553E6]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 6h16M4 12h16M4 18h16" />
-                        <path d="M8 6v12M16 6v12" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#9553E6">
+                        <path d="M2.5 3h11.2l-3.8 6H0L2.5 3zm5.3 8h11.2l-3.8 6H3.8l3.8-6zm5.4 8h10.8L20.2 24H9.4l3.8-5z" />
                       </svg>
                     )}
                     {skill.icon === 'tailwind' && (
-                      <svg class="w-5 h-5 text-[#38BDF8]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 3c-1.2 0-2.4.6-3 1.8C7.8 7.2 6.6 9 4.8 9c-1.2 0-2.4-.6-3-1.8C.6 4.8 1.8 3 3.6 3c1.2 0 2.4.6 3 1.8 1.2 2.4 2.4 4.2 4.2 4.2 1.2 0 2.4-.6 3-1.8 1.2-2.4 2.4-4.2 4.2-4.2 1.2 0 2.4.6 3 1.8 1.2 2.4 2.4 4.2 4.2 4.2 1.2 0 2.4-.6 3-1.8.6-1.2-1.2-3-3-3" />
-                        <path d="M12 15c-1.2 0-2.4.6-3 1.8-1.2 2.4-2.4 4.2-4.2 4.2-1.2 0-2.4-.6-3-1.8.6-1.2 2.4-3 4.2-3 1.2 0 2.4.6 3 1.8 1.2 2.4 2.4 4.2 4.2 4.2 1.2 0 2.4-.6 3-1.8.6-1.2 2.4-3 4.2-3" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#38BDF8">
+                        <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C7.666 17.818 9.027 19.2 12.001 19.2c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z" />
                       </svg>
                     )}
                     {skill.icon === 'flutter' && (
-                      <svg class="w-5 h-5 text-[#02569B]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2l-8 8 4 4 8-8z" />
-                        <path d="M14 10L6 18l4 4 8-8z" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
+                        <path d="M14.314 0L2.3 12 7.142 16.843 23.998.002h-9.684zm-4.856 12.001L4.602 16.857 14.313 24h9.685l-4.856-4.857-4.856-4.856.172-.286z" fill="#47C5FB" />
+                        <path d="M14.313 14.286l4.856 4.857L14.313 24H9.457l4.856-9.714z" fill="#00569E" />
                       </svg>
                     )}
                     {skill.icon === 'dart' && (
-                      <svg class="w-5 h-5 text-[#00C4B4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2l10 10-10 10L2 12z" />
-                        <path d="M12 6l6 6-6 6-6-6z" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
+                        <path d="M4.106 4.106L1.875 14.125l4.375 4.375 9.375-9.375L4.106 4.106z" fill="#00D2B8" />
+                        <path d="M4.106 4.106l11.519 5.019L22.125 1.875 12.106 1.875 4.106 4.106z" fill="#00A88F" />
+                        <path d="M15.625 9.125l6.5 6.5-5.019 6.5-11.481-6.5 10-6.5z" fill="#01579B" />
                       </svg>
                     )}
                     {skill.icon === 'laravel' && (
-                      <svg class="w-5 h-5 text-[#FF2D20]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 4h16v16H4z" />
-                        <path d="M4 12h16M12 4v16" />
-                        <path d="M8 8h8v8H8z" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#FF2D20">
+                        <path d="M23.6 6.3c-.1-.2-.3-.3-.5-.3l-8.7-2c-.2 0-.4 0-.6.2l-3.3 3.3c-.2.2-.2.4-.2.6l2 8.7c0 .2.2.4.4.5l3.3 1.1c.1 0 .2.1.3.1.2 0 .4-.1.5-.2l6.6-6.6c.3-.3.4-.7.2-1l-2.4-4.5zm-15.8 4.2l-6.6 6.6c-.3.3-.4.7-.2 1l2.4 4.5c.1.2.3.3.5.3l8.7 2c.2 0 .4 0 .6-.2l3.3-3.3c.2-.2.2-.4.2-.6l-2-8.7c0-.2-.2-.4-.4-.5l-3.3-1.1c-.1 0-.2-.1-.3-.1-.2 0-.4.1-.5.2z" />
                       </svg>
                     )}
                     {skill.icon === 'php' && (
-                      <svg class="w-5 h-5 text-[#777BB4]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <ellipse cx="12" cy="12" rx="10" ry="6" />
-                        <path d="M8 9h4a2 2 0 0 1 0 4H8M8 15V9M16 9h4a2 2 0 0 1 0 4h-4M16 15V9M12 9v6" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#777BB4">
+                        <path d="M12.001 0C5.372 0 0 5.372 0 12s5.372 12 12.001 12c6.627 0 11.999-5.372 11.999-12S18.628 0 12.001 0zm-4.79 6.745h2.158c1.378 0 2.278.683 2.278 1.884 0 1.258-.938 1.883-2.317 1.883H8.38l-.669 3.743H6.54l1.671-7.51zm2.357 2.607c.725 0 1.196-.328 1.196-.943 0-.601-.444-.943-1.17-.943H8.847l-.337 1.886h.798zm6.059-2.607h1.171l-1.671 7.51h-1.171l.669-3.003h-2.158l-.669 3.003h-1.171l1.671-7.51h1.171l-.669 3.003h2.158l.669-3.003zm5.174 0h2.158c1.378 0 2.278.683 2.278 1.884 0 1.258-.938 1.883-2.317 1.883h-.953l-.669 3.743h-1.171l1.671-7.51zm2.357 2.607c.725 0 1.196-.328 1.196-.943 0-.601-.444-.943-1.17-.943h-.749l-.337 1.886h.798z" />
                       </svg>
                     )}
                     {skill.icon === 'supabase' && (
-                      <svg class="w-5 h-5 text-[#3ECF8E]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9z" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#3ECF8E">
+                        <path d="M13.359 1.206c-.332-.239-.785-.226-1.103.033L2.148 10.155c-.417.341-.497.947-.183 1.383.218.303.578.47.945.438l8.204-.71-4.708 11.53c-.22.54.085 1.15.655 1.31.295.08.611.01.848-.19l10.108-8.916c.417-.341.497-.947.183-1.383a.998.998 0 0 0-.945-.438l-8.204.71 4.708-11.53c.189-.464.015-1.002-.399-1.256z" />
                       </svg>
                     )}
                     {skill.icon === 'firebase' && (
-                      <svg class="w-5 h-5 text-[#FFCA28]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2L4 9l8 13 8-13z" />
-                        <path d="M12 6L7 10l5 7 5-7z" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24">
+                        <path d="M3.89 15.67L6.6 2.54a.71.71 0 0 1 1.33-.17l2.67 5.06-1.58-9.45a.71.71 0 0 1 1.29-.44l10.1 18.13-9.17 5.15a1.86 1.86 0 0 1-1.8 0L3.89 15.67z" fill="#FFA000" />
+                        <path d="M13.48 2.5a.71.71 0 0 0-1.29.44l1.58 9.45 2.67-5.06a.71.71 0 0 0-1.33.17L13.48 2.5z" fill="#F57C00" />
+                        <path d="M20.47 20.8L13.3 7.5a.71.71 0 0 0-1.26 0L3.53 20.8l8.3 4.67a1.86 1.86 0 0 0 1.8 0l6.84-4.67z" fill="#FFCA28" />
                       </svg>
                     )}
                     {skill.icon === 'mysql' && (
-                      <svg class="w-5 h-5 text-[#00758F]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <ellipse cx="12" cy="5" rx="9" ry="3" />
-                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-                        <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#4479A1">
+                        <path d="M16.548 10.457c-.777 0-1.464.333-1.944.863V7.202h-2.128v12.285h2.128v-5.632c0-1.536 1.056-2.592 2.592-2.592.528 0 1.008.144 1.392.384v-2.064c-.384-.24-.864-.384-1.392-.384zm-6.816 0c-2.352 0-3.984 1.824-3.984 4.368 0 2.544 1.632 4.368 3.984 4.368 2.352 0 3.984-1.824 3.984-4.368 0-2.544-1.632-4.368-3.984-4.368zm0 6.672c-1.296 0-2.064-1.056-2.064-2.304 0-1.248.768-2.304 2.064-2.304 1.296 0 2.064 1.056 2.064 2.304 0 1.248-.768 2.304-2.064 2.304zm-7.68-6.432H0v1.92h2.052v6.624H0v1.92h6.192v-1.92H4.14v-6.624h2.052v-1.92H2.052z" />
                       </svg>
                     )}
                     {skill.icon === 'postgres' && (
-                      <svg class="w-5 h-5 text-[#4169E1]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <ellipse cx="12" cy="5" rx="9" ry="3" />
-                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-                        <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#4169E1">
+                        <path d="M12 0C5.37 0 0 4.97 0 11.11c0 4.14 2.47 7.74 6.06 9.77.16.29.35.79.25 1.48-.12.82-.47 1.84-.71 2.36-.08.17.06.36.24.31.85-.24 2.47-.79 3.73-1.68.79.16 1.61.25 2.43.25 6.63 0 12-4.97 12-11.11S18.63 0 12 0zm0 18.52c-.68 0-1.35-.07-2.01-.2l.62-.44c.48-.34.79-.88.85-1.46.06-.59-.14-1.17-.55-1.59l-1.39-1.42c-.42-.43-1.02-.66-1.62-.62-.6.04-1.15.34-1.5.83l-.79 1.1c-.24.34-.34.76-.28 1.17.06.41.28.77.61 1.01.33.24.74.33 1.15.25l1.09-.22c.26-.05.51.05.67.26.16.21.19.49.07.72l-.37.73c-2.45-1.35-4.06-3.85-4.06-6.73C2.49 6.2 6.75 2.22 12 2.22s9.51 3.98 9.51 8.89-4.26 8.89-9.51 8.89z" />
                       </svg>
                     )}
                     {skill.icon === 'docker' && (
-                      <svg class="w-5 h-5 text-[#2496ED]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="10" width="6" height="4" />
-                        <rect x="9" y="10" width="6" height="4" />
-                        <rect x="16" y="10" width="6" height="4" />
-                        <rect x="9" y="5" width="6" height="4" />
-                        <path d="M2 17h20v2H2z" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#2496ED">
+                        <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.186v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.185.185 0 00.186-.186V3.574a.185.185 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.186.185.186m0 5.43h2.118a.185.185 0 00.186-.185V9.006a.185.185 0 00-.186-.186h-2.118a.185.185 0 00-.185.186v1.888c0 .102.082.185.185.185m-2.955 0h2.119a.186.186 0 00.185-.185V9.006a.186.186 0 00-.185-.186H8.074a.185.185 0 00-.185.186v1.888c0 .102.083.185.185.185m0-2.716h2.119a.186.186 0 00.185-.185V6.29a.185.185 0 00-.185-.185H8.074a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.185m-2.955 2.716h2.119a.186.186 0 00.185-.185V9.006a.186.186 0 00-.185-.186H5.119a.185.185 0 00-.185.186v1.888c0 .102.083.185.185.185m0-2.716h2.119a.186.186 0 00.185-.185V6.29a.185.185 0 00-.185-.185H5.119a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.185m-2.955 2.716h2.119a.186.186 0 00.185-.185V9.006a.186.186 0 00-.185-.186H2.164a.185.185 0 00-.185.186v1.888c0 .102.083.185.185.185M.013 12.381c.078.694.394 2.87 1.942 4.29 1.637 1.5 4.382 1.764 5.378 1.764 4.542 0 7.828-2.091 9.479-5.118.847-.047 3.398-.242 4.67-2.617a.125.125 0 00-.045-.164.126.126 0 00-.077-.02c-1.393.018-2.697.558-3.528.986-1.077-.872-2.585-1.127-4.148-1.127H.16a.146.146 0 00-.147.146c0 .59.043 1.25.043 1.25" />
                       </svg>
                     )}
                     {skill.icon === 'git' && (
-                      <svg class="w-5 h-5 text-[#F05032]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="18" cy="18" r="3" />
-                        <circle cx="6" cy="6" r="3" />
-                        <circle cx="6" cy="18" r="3" />
-                        <path d="M18 15V9a4 4 0 0 0-4-4H9M6 9v6" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#F05032">
+                        <path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.216 1.378-.063 1.887.447.51.51.662 1.242.447 1.887l2.842 2.842c.645-.214 1.378-.062 1.887.447.674.674.674 1.768 0 2.442-.674.674-1.768.674-2.442 0-.525-.525-.668-1.272-.432-1.92L13.03 8.414v7.354c.18.084.347.202.483.338.674.674.674 1.768 0 2.442-.674.674-1.768.674-2.442 0-.674-.674-.674-1.768 0-2.442.176-.176.38-.302.6-.372V8.286c-.22-.07-.424-.196-.6-.372-.525-.525-.668-1.272-.434-1.92L7.75 3.064 1.414 9.4c-.604.604-.604 1.582 0 2.186l10.479 10.48c.604.603 1.582.603 2.187 0l9.466-9.467c.604-.603.604-1.58 0-2.186z" />
                       </svg>
                     )}
                     {skill.icon === 'vercel' && (
-                      <svg class="w-5 h-5 text-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2L2 22h20Z" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#000000">
+                        <path d="M24 22.525H0l12-21.05 12 21.05z" />
                       </svg>
                     )}
                     {skill.icon === 'postman' && (
-                      <svg class="w-5 h-5 text-[#FF6C37]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M12 6v6l4 2" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#FF6C37">
+                        <path d="M13.527.00001c-.13 0-.256.035-.367.102L.789 7.37c-.244.148-.393.414-.393.7 0 .285.149.551.393.699l12.371 7.268c.224.133.504.133.728 0l12.37-7.268c.244-.148.393-.414.393-.699 0-.286-.149-.552-.393-.7L13.894.102c-.111-.067-.237-.102-.367-.102zM12 4.14l8.307 4.88L12 13.9 3.693 9.02 12 4.14zM.396 11.23c-.244.148-.393.414-.393.7 0 .285.149.551.393.699l12.371 7.268c.112.066.237.101.367.101s.256-.035.367-.101l12.371-7.268c.244-.148.393-.414.393-.699 0-.286-.149-.552-.393-.7l-2.039-1.197-10.7 6.287L2.435 10.033.396 11.23z" />
                       </svg>
                     )}
                     {skill.icon === 'sentry' && (
-                      <svg class="w-5 h-5 text-[#362D59]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z" />
-                        <path d="M12 6v12M8 12h8" />
+                      <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" fill="#362D59">
+                        <path d="M13.2 0a2.4 2.4 0 0 0-2.4 2.4v1.854a10.8 10.8 0 0 0-7.346 7.346H1.6a1.6 1.6 0 0 0 0 3.2h1.854A10.8 10.8 0 0 0 10.8 22.146V24a1.6 1.6 0 0 0 3.2 0v-1.854a10.8 10.8 0 0 0 7.346-7.346H23.2a1.6 1.6 0 0 0 0-3.2h-1.854A10.8 10.8 0 0 0 13.999 4.254V2.4A2.4 2.4 0 0 0 13.2 0zm-1.2 7.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6z" />
                       </svg>
                     )}
                     <span>{skill.name}</span>
