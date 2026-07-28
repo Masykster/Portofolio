@@ -186,6 +186,49 @@ const timeline = [
     description: "Menempuh pendidikan sekolah menengah atas dengan peminatan Ilmu Pengetahuan Alam secara aktif."
   }
 ];
+
+const certificates = [
+  {
+    title: "Belajar Dasar Pemrograman Web",
+    issuer: "Dicoding Indonesia",
+    date: "2024",
+    credentialId: "DICODING-WEB-2024",
+    credentialUrl: "https://www.dicoding.com",
+    category: "Web Development",
+    color: "#FFE600",
+    description: "Sertifikasi kelulusan dasar pemrograman web melingkupi HTML5, CSS3, layouting responsif dengan Flexbox & Grid, serta pengenalan standar web W3C."
+  },
+  {
+    title: "Belajar Membuat Aplikasi Web dengan React",
+    issuer: "Dicoding Indonesia",
+    date: "2024",
+    credentialId: "DICODING-REACT-2024",
+    credentialUrl: "https://www.dicoding.com",
+    category: "Frontend",
+    color: "#00E5FF",
+    description: "Kompetensi pembuatan Single Page Application (SPA) modular berbasis React.js, State Management (Hooks & Context), dan konsumsi RESTful API."
+  },
+  {
+    title: "Belajar Dasar Pemrograman JavaScript",
+    issuer: "Dicoding Indonesia",
+    date: "2024",
+    credentialId: "DICODING-JS-2024",
+    credentialUrl: "https://www.dicoding.com",
+    category: "Programming",
+    color: "#39FF14",
+    description: "Penguasaan sintaksis modern ECMAScript 6+ (ES6+), Asynchronous JavaScript (Promises & Async/Await), Manipulasi DOM, dan OOP."
+  },
+  {
+    title: "Panitia MI EXPO 2024 (Divisi Humas)",
+    issuer: "Hima Manajemen Informatika UNESA",
+    date: "Desember 2024",
+    credentialId: "UNESA-MIEXPO-2024",
+    credentialUrl: "#",
+    category: "Organisasi",
+    color: "#FF6B00",
+    description: "Sertifikat penghargaan atas kontribusi aktif dalam Divisi Humas pada penyelenggaraan acara MI EXPO 2024 di Universitas Negeri Surabaya."
+  }
+];
 ---
 
 <Layout title="Masykster | Web Developer Portfolio" description="Portofolio pribadi Masykster - Web Developer profesional dengan keahlian di Astro, React, dan gaya desain Neo-Brutalisme yang unik.">
@@ -216,6 +259,7 @@ const timeline = [
           <a href="#karya" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Karya</a>
           <a href="#keahlian" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Keahlian</a>
           <a href="#tentang" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Tentang</a>
+          <a href="#sertifikat" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Sertifikat</a>
           <a href="#kontak" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Kontak</a>
         </nav>
 
@@ -568,6 +612,63 @@ const timeline = [
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- CERTIFICATES SECTION -->
+    <section id="sertifikat" class="mb-12 sm:mb-16 scroll-mt-24 reveal-on-scroll">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl sm:text-4xl font-black font-heading bg-[#FFE600] px-4 py-2 border-3 border-black inline-block transform -rotate-1">
+          Sertifikasi &amp; Penghargaan
+        </h2>
+        <a href="/sertifikat" class="neo-btn bg-white text-black text-xs sm:text-sm font-extrabold px-4 py-2 border-2 border-black hidden sm:inline-flex">
+          Halaman Sertifikat &rarr;
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        {certificates.map((cert, idx) => (
+          <div class={`neo-box-lg bg-white p-6 flex flex-col justify-between reveal-on-scroll delay-${(idx + 1) * 75}`}>
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="neo-badge bg-[#39FF14] text-black">
+                  {cert.category}
+                </span>
+                <span class="text-xs font-bold text-gray-600 bg-gray-100 px-2 py-0.5 border border-black">
+                  {cert.date}
+                </span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-black font-heading leading-tight mb-2">
+                {cert.title}
+              </h3>
+              <h4 class="text-sm font-extrabold text-gray-700 mb-4 flex items-center gap-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#FF6B00]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                <span>{cert.issuer}</span>
+              </h4>
+              <p class="text-sm font-semibold text-gray-700 leading-relaxed mb-6">
+                {cert.description}
+              </p>
+            </div>
+
+            <div class="flex items-center justify-between pt-4 border-t-2 border-black/10">
+              <span class="text-[11px] font-mono font-bold text-gray-500">
+                ID: {cert.credentialId}
+              </span>
+              {cert.credentialUrl && cert.credentialUrl !== '#' && (
+                <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" class="neo-btn bg-[#FFE600] text-black text-xs font-extrabold px-3 py-1.5 flex items-center space-x-1">
+                  <span>Verifikasi</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="mt-6 text-center sm:hidden">
+        <a href="/sertifikat" class="neo-btn bg-white text-black text-xs font-extrabold px-5 py-2.5 border-2 border-black inline-block">
+          Halaman Sertifikat Lengkap &rarr;
+        </a>
       </div>
     </section>
 
