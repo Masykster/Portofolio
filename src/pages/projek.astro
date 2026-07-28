@@ -1,0 +1,230 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Custom descriptions & tags for known repositories
+const customProjectMetadata: Record<string, { description?: string; tech?: string[]; color?: string; liveUrl?: string }> = {
+  "Angonku.id": {
+    description: "Platform manajemen peternakan ayam broiler digital. Memantau FCR, IP Score, dan mortality rate secara real-time. Dilengkapi jadwal pemeliharaan otomatis, rekomendasi pakan, integrasi cuaca, push notification FCM, dan laporan PDF bankable untuk pengajuan KUR.",
+    tech: ["React.js", "Inertia.js", "Laravel", "PostgreSQL", "Supabase", "Docker", "Sentry"],
+    color: "#FFE600",
+  },
+  "Stre4mit": {
+    description: "Aplikasi streaming film berbasis Next.js dengan App Router. Di-deploy langsung ke stre4mit.vercel.app — dapat diakses publik tanpa setup lokal.",
+    tech: ["Next.js", "JavaScript", "Tailwind CSS", "App Router", "Vercel"],
+    color: "#00E5FF",
+    liveUrl: "https://stre4mit.vercel.app"
+  },
+  "DailyBit": {
+    description: "Gamified habit tracker dan daily diary mobile app. Mendukung tiga tipe habit, sistem streak, mood tracking, achievement, cloud sync real-time, dan notifikasi harian. Rilis resmi v1.0.0.",
+    tech: ["Flutter", "Dart", "Firebase Auth", "Firebase FCM", "Isar DB"],
+    color: "#39FF14",
+  },
+  "EcoFlow": {
+    description: "Aplikasi web sustainability berbasis Laravel dengan REST API terdokumentasi menggunakan Postman collection (EcoStep API) dan CI/CD pipeline via GitHub Actions.",
+    tech: ["Blade", "Tailwind CSS", "Laravel", "REST API", "GitHub Actions", "Postman"],
+    color: "#FF6B00",
+  },
+  "starling-s-coffeev2": {
+    description: "Website e-commerce kedai kopi modern. Fitur: katalog menu, keranjang belanja, checkout (delivery/pickup), loyalty points & rewards, admin dashboard, manajemen pesanan, dan dark mode.",
+    tech: ["HTML", "CSS", "JavaScript", "PHP Native", "MySQL"],
+    color: "#FFE600",
+  },
+  "Ascention": {
+    description: "Aplikasi web SPA full-stack dengan Vue.js sebagai frontend dan Laravel sebagai backend. Arsitektur modern dengan database seeder dan schema populate.",
+    tech: ["Vue.js", "Tailwind CSS", "Laravel", "PHP", "MySQL"],
+    color: "#00E5FF",
+  },
+  "Cinevora": {
+    description: "Platform katalog dan informasi film berbasis Laravel dan Blade. Arsitektur MVC Laravel dengan server-side rendering menggunakan Blade templating engine.",
+    tech: ["Blade", "CSS", "Laravel", "PHP", "MySQL"],
+    color: "#39FF14",
+  }
+};
+
+const neoColors = ["#FFE600", "#00E5FF", "#39FF14", "#FF6B00"];
+
+interface ProjectItem {
+  title: string;
+  description: string;
+  tech: string[];
+  liveUrl: string;
+  githubUrl: string;
+  color: string;
+  stars?: number;
+}
+
+let projects: ProjectItem[] = [];
+
+try {
+  const response = await fetch('https://api.github.com/users/Masykster/repos?sort=updated&per_page=30', {
+    headers: {
+      'User-Agent': 'Masykster-Portfolio-App'
+    }
+  });
+
+  if (response.ok) {
+    const rawRepos = await response.json();
+    projects = rawRepos
+      .filter((repo: any) => !repo.fork && repo.name !== 'Masykster')
+      .map((repo: any, idx: number) => {
+        const metadata = customProjectMetadata[repo.name] || {};
+        
+        let techList: string[] = metadata.tech || [];
+        if (!techList.length) {
+          if (repo.topics && repo.topics.length > 0) {
+            techList = repo.topics;
+          } else if (repo.language) {
+            techList = [repo.language];
+          } else {
+            techList = ['GitHub'];
+          }
+        }
+
+        const homepage = repo.homepage ? repo.homepage.trim() : '';
+        const validLiveUrl = (homepage !== '' && homepage !== repo.html_url && homepage !== '#') ? homepage : '';
+
+        return {
+          title: repo.name,
+          description: metadata.description || repo.description || "Proyek open-source publik dikembangkan oleh Masykster yang tersedia di GitHub.",
+          tech: techList,
+          liveUrl: metadata.liveUrl || validLiveUrl,
+          githubUrl: repo.html_url,
+          color: metadata.color || neoColors[idx % neoColors.length],
+          stars: repo.stargazers_count
+        };
+      });
+  }
+} catch (error) {
+  console.error("Failed to fetch repositories from GitHub API at build time:", error);
+}
+
+if (!projects.length) {
+  projects = [
+    {
+      title: "Angonku.id",
+      description: "Platform manajemen peternakan ayam broiler digital. Memantau FCR, IP Score, dan mortality rate secara real-time.",
+      tech: ["React.js", "Inertia.js", "Laravel", "PostgreSQL"],
+      liveUrl: "",
+      githubUrl: "https://github.com/Masykster/Angonku.id",
+      color: "#FFE600"
+    },
+    {
+      title: "Stre4mit",
+      description: "Aplikasi streaming film berbasis Next.js dengan App Router.",
+      tech: ["Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
+      liveUrl: "https://stre4mit.vercel.app",
+      githubUrl: "https://github.com/Masykster/Stre4mit",
+      color: "#00E5FF"
+    },
+    {
+      title: "DailyBit",
+      description: "Gamified habit tracker dan daily diary mobile app.",
+      tech: ["Flutter", "Dart", "Firebase"],
+      liveUrl: "",
+      githubUrl: "https://github.com/Masykster/DailyBit",
+      color: "#39FF14"
+    }
+  ];
+}
+---
+
+<Layout title="Projek & Karya | Abdullah Masykur" description="Koleksi lengkap proyek open-source, aplikasi web, dan mobile karya Abdullah Masykur yang diambil secara otomatis dari GitHub.">
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-8 font-sans">
+    
+    <!-- HEADER NAV -->
+    <div class="mb-10 flex items-center justify-between">
+      <a href="/" class="neo-btn bg-[#FFE600] text-black px-4 py-2 text-xs sm:text-sm font-extrabold flex items-center space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        <span>Kembali ke Beranda</span>
+      </a>
+
+      <div class="flex items-center space-x-4">
+        <a href="/sertifikat" class="neo-btn bg-white text-black px-4 py-2 text-xs sm:text-sm font-extrabold border-2 border-black">
+          Sertifikat &rarr;
+        </a>
+        <span class="neo-badge bg-[#00E5FF] text-black text-xs uppercase font-extrabold hidden sm:inline-block">
+          {projects.length} Repositori GitHub
+        </span>
+      </div>
+    </div>
+
+    <!-- TITLE BANNER -->
+    <div class="neo-box-lg bg-white p-6 sm:p-10 mb-10">
+      <div class="inline-block bg-[#FFE600] text-black font-extrabold text-xs sm:text-sm px-3 py-1 border-2 border-black mb-4 uppercase tracking-wider transform -rotate-1">
+        Portofolio &amp; Repositori Open Source
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black font-heading tracking-tight mb-4 leading-tight">
+        Karya &amp; <span class="bg-[#39FF14] inline-block px-2 border-2 border-black transform rotate-1">Projek</span>
+      </h1>
+      <p class="text-base sm:text-lg font-semibold text-gray-700 max-w-2xl leading-relaxed">
+        Daftar proyek aplikasi web, sistem manajemen, dan aplikasi mobile yang telah saya kembangkan. Data ini tersinkronisasi secara otomatis dari GitHub API.
+      </p>
+    </div>
+
+    <!-- PROJECTS GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
+      {projects.map((project) => (
+        <article class="neo-box-lg bg-white flex flex-col justify-between overflow-hidden group hover:-translate-y-1 transition-transform">
+          {/* Visual Header */}
+          <div class="h-48 border-b-3 border-black bg-gray-200 relative flex items-center justify-center p-6 overflow-hidden" style={`background-color: ${project.color}33`}>
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] opacity-[0.07]"></div>
+            
+            <div class="w-3/4 h-32 border-3 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col p-3 transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-2">
+              <div class="flex items-center space-x-1.5 border-b-2 border-black pb-1.5 mb-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-red-500 border border-black"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-yellow-500 border border-black"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500 border border-black"></div>
+              </div>
+              <div class="flex-1 bg-gray-50 flex items-center justify-center font-heading font-black text-[11px] sm:text-xs uppercase tracking-wide border border-black/20 text-center px-1">
+                {project.title}
+              </div>
+            </div>
+          </div>
+
+          {/* Content info */}
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h2 class="text-xl sm:text-2xl font-black font-heading mb-3 tracking-tight">{project.title}</h2>
+              <p class="text-sm font-semibold text-gray-700 mb-6 leading-relaxed">
+                {project.description}
+              </p>
+            </div>
+
+            <div>
+              <!-- Tech stack Tags -->
+              <div class="flex flex-wrap gap-1.5 mb-6">
+                {project.tech.map((tag) => (
+                  <span class="bg-gray-100 border border-black px-2 py-0.5 text-[10px] sm:text-xs font-bold text-gray-800">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <!-- Links Buttons -->
+              <div class="flex items-center space-x-3">
+                {project.liveUrl && project.liveUrl !== '#' && (
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="neo-btn bg-[#FFE600] text-black text-xs font-extrabold px-3 py-2 flex items-center space-x-1">
+                    <span>Demo</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                  </a>
+                )}
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="neo-btn bg-white text-black text-xs font-extrabold px-3 py-2 flex items-center space-x-1 border-3 border-black">
+                  <span>GitHub</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- FOOTER LINK -->
+    <div class="text-center py-6">
+      <a href="/" class="neo-btn bg-[#FF6B00] text-white px-8 py-3.5 text-sm sm:text-base font-extrabold uppercase tracking-wider">
+        &larr; Kembali ke Beranda Utama
+      </a>
+    </div>
+
+  </main>
+</Layout>

@@ -256,10 +256,9 @@ const certificates = [
         
         <!-- Desktop Nav -->
         <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 font-bold">
-          <a href="#karya" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Karya</a>
+          <a href="/projek" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Projek</a>
           <a href="#keahlian" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Keahlian</a>
-          <a href="#tentang" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Tentang</a>
-          <a href="#sertifikat" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Sertifikat</a>
+          <a href="/sertifikat" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Sertifikat</a>
           <a href="#kontak" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Kontak</a>
         </nav>
 
@@ -288,8 +287,8 @@ const certificates = [
         </div>
 
         <div class="flex flex-wrap gap-4">
-          <a href="#karya" class="neo-btn bg-[#FFE600] text-black px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base font-extrabold">
-            Lihat Portofolio
+          <a href="/projek" class="neo-btn bg-[#FFE600] text-black px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base font-extrabold">
+            Lihat Projek
           </a>
           <a href="#" class="neo-btn bg-white text-black px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base font-extrabold border-3 border-black">
             Unduh CV (PDF)
@@ -343,14 +342,17 @@ const certificates = [
 
     <!-- PORTFOLIO / KARYA SECTION -->
     <section id="karya" class="mb-12 sm:mb-16 scroll-mt-24 reveal-on-scroll">
-      <div class="flex items-center mb-8">
+      <div class="flex items-center justify-between mb-8">
         <h2 class="text-3xl sm:text-4xl font-black font-heading bg-[#FFE600] px-4 py-2 border-3 border-black inline-block transform -rotate-1">
           Karya Pilihan
         </h2>
+        <a href="/projek" class="neo-btn bg-white text-black text-xs sm:text-sm font-extrabold px-4 py-2 border-2 border-black">
+          Lihat Semua Projek &rarr;
+        </a>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {projects.map((project, idx) => (
+        {projects.slice(0, 3).map((project, idx) => (
           <article class={`neo-box-lg bg-white flex flex-col justify-between overflow-hidden group reveal-on-scroll delay-${(idx + 1) * 75}`}>
             {/* Visual Header */}
             <div class="h-48 border-b-3 border-black bg-gray-200 relative flex items-center justify-center p-6 overflow-hidden" style={`background-color: ${project.color}33`}>
@@ -404,6 +406,12 @@ const certificates = [
             </div>
           </article>
         ))}
+      </div>
+
+      <div class="mt-8 text-center">
+        <a href="/projek" class="neo-btn bg-[#FFE600] text-black text-xs sm:text-sm font-extrabold px-6 py-3 border-2 border-black inline-block uppercase tracking-wider">
+          Lihat Semua Projek di Halaman Terpisah &rarr;
+        </a>
       </div>
     </section>
 
