@@ -55,14 +55,14 @@ const certificates = [
     </div>
 
     <!-- CERTIFICATES GRID -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12">
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8 mb-12">
       {certificates.map((cert, cIdx) => {
         const cAnimClass = cIdx % 2 === 0 ? 'reveal-left' : 'reveal-right';
         return (
-          <div class={`neo-box-lg bg-white p-6 sm:p-8 flex flex-col justify-between group hover:-translate-y-1 transition-transform ${cAnimClass}`}>
+          <div class={`neo-box-lg bg-white p-3.5 sm:p-8 flex flex-col justify-between group hover:-translate-y-1 transition-transform ${cAnimClass}`}>
           <div>
             {cert.imageUrl && (
-              <div class="mb-4 h-48 border-2 border-black rounded-[5px] bg-gray-100 overflow-hidden relative shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              <div class="mb-4 h-36 sm:h-48 border-2 border-black rounded-[5px] bg-gray-100 overflow-hidden relative shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                 <img 
                   src={cert.imageUrl} 
                   alt={cert.title}
