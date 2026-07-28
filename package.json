@@ -19,7 +19,6 @@
     "astro": "^6.4.6",
     "lenis": "^1.3.25",
     "lucide-react": "^1.18.0",
-    "playcaptcha": "^0.1.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tailwindcss": "^4.3.1",

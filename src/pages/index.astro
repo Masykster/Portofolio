@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ClawCaptchaWrapper from '../components/ClawCaptchaWrapper';
 
 // Custom descriptions, tags, and optional Cloudinary images for known repositories
 const customProjectMetadata: Record<string, { description?: string; tech?: string[]; color?: string; imageUrl?: string }> = {
@@ -245,18 +244,6 @@ const certificates = [
 ---
 
 <Layout title="Abdullah Masykur | Software Engineer & Web Developer" description="Portofolio Abdullah Masykur - Web Developer & Software Engineer berlokasi di Surabaya dengan spesialisasi Astro, React, Laravel, dan Neobrutalisme.">
-  <!-- Captcha Entrance Gate Overlay -->
-  <div id="captcha-gate" class="fixed inset-0 z-[100] bg-[#FAF2E6] dark:bg-[#262320] flex flex-col items-center justify-start sm:justify-center p-4 overflow-y-auto py-8 sm:py-12 transition-all duration-500 ease-out select-none">
-    <div class="w-full max-w-md flex flex-col items-center my-auto">
-      <ClawCaptchaWrapper client:load />
-      
-      <!-- Skip button outside the box -->
-      <button id="skip-btn" class="mt-6 sm:mt-8 font-extrabold text-sm sm:text-base uppercase tracking-wider underline decoration-3 underline-offset-4 hover:text-[#FF6B00] transition-all cursor-pointer">
-        Skip Captcha &rarr;
-      </button>
-    </div>
-  </div>
-
   <main class="font-sans space-y-12">
     
     <!-- HERO / HOME SECTION -->
@@ -692,49 +679,6 @@ const certificates = [
 
   const handlePageLoad = () => {
     initializeAnimations();
-    
-    // Captcha Gate unlock handler
-    const gate = document.getElementById('captcha-gate');
-    const skipBtn = document.getElementById('skip-btn');
-    
-    const unlockGate = (immediate = false) => {
-      if (!gate) return;
-      if (immediate) {
-        gate.style.display = 'none';
-        gate.remove();
-        document.body.style.overflow = '';
-        window.dispatchEvent(new CustomEvent('lenis-start'));
-      } else {
-        gate.style.opacity = '0';
-        gate.style.pointerEvents = 'none';
-        setTimeout(() => {
-          gate.remove();
-          document.body.style.overflow = '';
-          window.dispatchEvent(new CustomEvent('lenis-start'));
-        }, 500);
-      }
-    };
-
-    // Lock page scroll initially if gate exists in DOM and sessionStorage is not set
-    const verifiedSession = sessionStorage.getItem('playcaptcha-verified');
-    if (gate && verifiedSession !== 'true') {
-      document.body.style.overflow = 'hidden';
-      window.dispatchEvent(new CustomEvent('lenis-stop'));
-    } else if (gate && verifiedSession === 'true') {
-      unlockGate(true);
-    }
-
-    if (skipBtn) {
-      skipBtn.addEventListener('click', () => {
-        sessionStorage.setItem('playcaptcha-verified', 'true');
-        unlockGate(false);
-      });
-    }
-
-    window.addEventListener('captcha-verified', (e: any) => {
-      const immediate = e.detail?.immediate || false;
-      unlockGate(immediate);
-    });
   };
 
   document.addEventListener('astro:page-load', handlePageLoad);

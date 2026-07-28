@@ -125,12 +125,6 @@ const {
           autoRaf: true,
         });
 
-        const gate = document.getElementById('captcha-gate');
-        const verifiedSession = sessionStorage.getItem('playcaptcha-verified');
-        if (gate && verifiedSession !== 'true') {
-          lenis.stop();
-        }
-
         window.addEventListener('lenis-stop', () => {
           lenis?.stop();
         });
