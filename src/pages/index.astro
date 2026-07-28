@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import ClawCaptchaWrapper from '../components/ClawCaptchaWrapper';
 
 // Custom descriptions & tags for known repositories
-const customProjectMetadata: Record<string, { description?: string; tech?: string[]; color?: string }> = {
+const customProjectMetadata: Record<string, { description?: string; tech?: string[]; color?: string; liveUrl?: string }> = {
   "Angonku.id": {
     description: "Platform manajemen peternakan ayam broiler digital. Memantau FCR, IP Score, dan mortality rate secara real-time. Dilengkapi jadwal pemeliharaan otomatis, rekomendasi pakan, integrasi cuaca, push notification FCM, dan laporan PDF bankable untuk pengajuan KUR.",
     tech: ["React.js", "Inertia.js", "Laravel", "PostgreSQL", "Supabase", "Docker", "Sentry"],
@@ -13,6 +13,7 @@ const customProjectMetadata: Record<string, { description?: string; tech?: strin
     description: "Aplikasi streaming film berbasis Next.js dengan App Router. Di-deploy langsung ke stre4mit.vercel.app — dapat diakses publik tanpa setup lokal.",
     tech: ["Next.js", "JavaScript", "Tailwind CSS", "App Router", "Vercel"],
     color: "#00E5FF",
+    liveUrl: "https://stre4mit.vercel.app",
   },
   "DailyBit": {
     description: "Gamified habit tracker dan daily diary mobile app. Mendukung tiga tipe habit, sistem streak, mood tracking, achievement, cloud sync real-time, dan notifikasi harian. Rilis resmi v1.0.0.",
@@ -38,6 +39,7 @@ const customProjectMetadata: Record<string, { description?: string; tech?: strin
     description: "Platform katalog dan informasi film berbasis Laravel dan Blade. Arsitektur MVC Laravel dengan server-side rendering menggunakan Blade templating engine.",
     tech: ["Blade", "CSS", "Laravel", "PHP", "MySQL"],
     color: "#39FF14",
+    liveUrl: "https://cinevora-rouge.vercel.app",
   }
 };
 
@@ -47,7 +49,8 @@ interface ProjectItem {
   title: string;
   description: string;
   tech: string[];
-  liveUrl: string;
+  liveUrl: string | null;
+  hasDemo: boolean;
   githubUrl: string;
   color: string;
   stars?: number;
@@ -80,11 +83,15 @@ try {
           }
         }
 
+        const homepageUrl = metadata.liveUrl || (repo.homepage && repo.homepage.trim() !== '' ? repo.homepage.trim() : null);
+        const hasDemo = Boolean(homepageUrl);
+
         return {
           title: repo.name,
           description: metadata.description || repo.description || "Proyek open-source publik dikembangkan oleh Masykster yang tersedia di GitHub.",
           tech: techList,
-          liveUrl: (repo.homepage && repo.homepage.trim() !== '') ? repo.homepage : repo.html_url,
+          liveUrl: homepageUrl,
+          hasDemo,
           githubUrl: repo.html_url,
           color: metadata.color || neoColors[idx % neoColors.length],
           stars: repo.stargazers_count
@@ -102,7 +109,8 @@ if (!projects.length) {
       title: "Angonku.id",
       description: "Platform manajemen peternakan ayam broiler digital. Memantau FCR, IP Score, dan mortality rate secara real-time.",
       tech: ["React.js", "Inertia.js", "Laravel", "PostgreSQL"],
-      liveUrl: "https://github.com/Masykster/Angonku.id",
+      liveUrl: null,
+      hasDemo: false,
       githubUrl: "https://github.com/Masykster/Angonku.id",
       color: "#FFE600"
     },
@@ -111,6 +119,7 @@ if (!projects.length) {
       description: "Aplikasi streaming film berbasis Next.js dengan App Router.",
       tech: ["Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
       liveUrl: "https://stre4mit.vercel.app",
+      hasDemo: true,
       githubUrl: "https://github.com/Masykster/Stre4mit",
       color: "#00E5FF"
     },
@@ -118,7 +127,8 @@ if (!projects.length) {
       title: "DailyBit",
       description: "Gamified habit tracker dan daily diary mobile app.",
       tech: ["Flutter", "Dart", "Firebase"],
-      liveUrl: "https://github.com/Masykster/DailyBit",
+      liveUrl: null,
+      hasDemo: false,
       githubUrl: "https://github.com/Masykster/DailyBit",
       color: "#39FF14"
     }
@@ -342,10 +352,17 @@ const timeline = [
 
                 <!-- Links Buttons -->
                 <div class="flex items-center space-x-3">
-                  <a href={project.liveUrl} class="neo-btn bg-[#FFE600] text-black text-xs font-extrabold px-3 py-2 flex items-center space-x-1">
-                    <span>Demo</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-                  </a>
+                  {project.hasDemo && project.liveUrl ? (
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="neo-btn bg-[#FFE600] text-black text-xs font-extrabold px-3 py-2 flex items-center space-x-1">
+                      <span>Demo</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                    </a>
+                  ) : (
+                    <span class="bg-gray-200 text-gray-400 border-2 border-gray-400 text-xs font-extrabold px-3 py-2 flex items-center space-x-1 cursor-not-allowed opacity-60 select-none">
+                      <span>Demo Off</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </span>
+                  )}
                   <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="neo-btn bg-white text-black text-xs font-extrabold px-3 py-2 flex items-center space-x-1 border-3 border-black">
                     <span>GitHub</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
