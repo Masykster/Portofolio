@@ -1,66 +1,60 @@
-/* 1. @import Font harus berada di paling atas */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
-
-/* 2. Baru panggil engine Tailwind v4 */
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-@theme {
-  --color-neo-bg: #F4F4F0;
-  --color-neo-yellow: #FFE600;
-  --color-neo-green: #39FF14;
-  --color-neo-blue: #00E5FF;
-  --color-neo-orange: #FF6B00;
-  --color-neo-black: #000000;
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Space Grotesk', var(--font-sans);
-}
+@layer base {
+  :root {
+    --background: #FAF2E6;
+    --secondary-background: #FFFFFF;
+    --foreground: #000000;
+    --main-foreground: #000000;
+    --main: #FF6B00;
+    --border: #000000;
+    --shadow: 4px 4px 0px 0px #000000;
+    --radius-base: 5px;
+  }
 
-:root {
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-
-  /* playcaptcha custom variables styled for Neo-Brutalist look */
-  --clawcap-bg: #ffffff;
-  --clawcap-ink: #000000;
-  --clawcap-muted: #555555;
-  --clawcap-accent: #00E5FF; /* Biru Elektrik */
-  --clawcap-action: #FF6B00; /* Oranye menyala */
+  html.dark {
+    --background: #262320;
+    --secondary-background: #1F1C19;
+    --foreground: #F2EFE9;
+    --main-foreground: #000000;
+    --main: #FF7A1A;
+    --border: #000000;
+    --shadow: 4px 4px 0px 0px #000000;
+  }
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: #F4F4F0;
-  color: #000000;
-  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
-/* Custom Scrollbar in Neo-Brutalist Theme */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+/* Custom Scrollbar in neobrutalism-templates style */
+body::-webkit-scrollbar {
+  width: 16px;
 }
 
-::-webkit-scrollbar-track {
-  background: #F4F4F0;
+body::-webkit-scrollbar-track {
+  background: var(--secondary-background);
   border-left: 3px solid #000000;
 }
 
-::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
   background: #000000;
-  border: 2px solid #F4F4F0;
+  border: 2px solid var(--secondary-background);
+  border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover {
   background: #FF6B00;
 }
 
-/* neobrutalism.dev design system components: Card, Button, Badge, and Input */
+/* neobrutalism-templates component classes */
 .neo-box {
-  background-color: #ffffff;
-  border: 2.5px solid #000000;
+  background-color: var(--secondary-background);
+  color: var(--foreground);
+  border: 2px solid #000000;
+  border-radius: 5px;
   box-shadow: 4px 4px 0px 0px #000000;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
@@ -70,31 +64,27 @@ body {
   box-shadow: 2px 2px 0px 0px #000000;
 }
 
-.neo-box:active {
-  transform: translate(4px, 4px);
-  box-shadow: 0px 0px 0px 0px #000000;
-}
-
 .neo-box-lg {
-  background-color: #ffffff;
-  border: 3px solid #000000;
-  box-shadow: 6px 6px 0px 0px #000000;
+  background-color: var(--secondary-background);
+  color: var(--foreground);
+  border: 2px solid #000000;
+  border-radius: 5px;
+  box-shadow: 5px 5px 0px 0px #000000;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.neo-box-lg:hover {
-  transform: translate(3px, 3px);
-  box-shadow: 3px 3px 0px 0px #000000;
 }
 
 .neo-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 2.5px solid #000000;
-  font-weight: 800;
+  background-color: var(--secondary-background);
+  color: var(--foreground);
+  border: 2px solid #000000;
+  border-radius: 5px;
+  font-weight: 700;
   box-shadow: 4px 4px 0px 0px #000000;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  cursor: pointer;
 }
 
 .neo-btn:hover {
@@ -111,215 +101,43 @@ body {
   display: inline-flex;
   align-items: center;
   border: 2px solid #000000;
+  border-radius: 5px;
   font-weight: 800;
+  padding: 0.2rem 0.6rem;
   font-size: 0.75rem;
-  padding: 0.25rem 0.6rem;
   box-shadow: 2px 2px 0px 0px #000000;
 }
 
 .neo-input {
-  background-color: #ffffff;
-  border: 2.5px solid #000000;
+  width: 100%;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  background-color: var(--secondary-background);
+  color: var(--foreground);
   padding: 0.75rem 1rem;
-  font-weight: 700;
+  font-weight: 600;
   box-shadow: 3px 3px 0px 0px #000000;
   outline: none;
-  transition: all 0.15s ease;
+  transition: box-shadow 0.15s ease, background-color 0.15s ease;
 }
 
 .neo-input:focus {
-  background-color: #FFE600; /* Kuning Terang */
+  background-color: #FFE600;
+  color: #000000;
   box-shadow: 5px 5px 0px 0px #000000;
 }
 
-/* Dark Mode Neo-Brutalist Styling */
-html.dark body {
-  background-color: #121212 !important;
-  color: #FFFFFF !important;
-}
-
-html.dark .neo-box {
-  background-color: #1E1E1E !important;
-  color: #FFFFFF !important;
-  border-color: #FFFFFF !important;
-  box-shadow: 4px 4px 0px 0px #FFFFFF !important;
-}
-
-html.dark .neo-box:hover {
-  box-shadow: 2px 2px 0px 0px #FFFFFF !important;
-}
-
-html.dark .neo-box-lg {
-  background-color: #1E1E1E !important;
-  color: #FFFFFF !important;
-  border-color: #FFFFFF !important;
-  box-shadow: 6px 6px 0px 0px #FFFFFF !important;
-}
-
-html.dark .neo-box-lg:hover {
-  box-shadow: 3px 3px 0px 0px #FFFFFF !important;
-}
-
-html.dark .neo-btn {
-  border-color: #FFFFFF !important;
-  box-shadow: 4px 4px 0px 0px #FFFFFF !important;
-}
-
-html.dark .neo-btn:hover {
-  box-shadow: 2px 2px 0px 0px #FFFFFF !important;
-}
-
-html.dark .neo-input {
-  background-color: #1E1E1E !important;
-  color: #FFFFFF !important;
-  border-color: #FFFFFF !important;
-  box-shadow: 3px 3px 0px 0px #FFFFFF !important;
-}
-
-html.dark .neo-input:focus {
-  background-color: #2D2D2D !important;
-  box-shadow: 5px 5px 0px 0px #FFE600 !important;
-}
-
-html.dark .neo-badge {
-  border-color: #FFFFFF !important;
-  box-shadow: 2px 2px 0px 0px #FFFFFF !important;
-}
-
-html.dark .text-gray-700, html.dark .text-gray-600 {
-  color: #D1D5DB !important;
-}
-
-html.dark .text-gray-800 {
-  color: #F3F4F6 !important;
-}
-
-html.dark #captcha-gate {
-  background-color: #121212 !important;
-}
-
-/* Infinite horizontal marquee styling */
+/* Marquee Animation */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
 .animate-marquee {
-  display: inline-flex;
-  white-space: nowrap;
-  animation: marquee 20s linear infinite;
-  will-change: transform;
+  animation: marquee 25s linear infinite;
 }
 
-/* Page load & scroll reveal animations (Spring physical effect using custom cubic-bezier) */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(28px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Elements hide by default before reveal-in is applied via Intersection Observer */
 .reveal-on-scroll {
-  opacity: 0;
-}
-
-.reveal-in {
-  animation: fadeInUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
-}
-
-/* Stagger delay utility classes */
-.delay-75 { animation-delay: 75ms; }
-.delay-100 { animation-delay: 100ms; }
-.delay-150 { animation-delay: 150ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-450 { animation-delay: 450ms; }
-
-/* Custom Cartoon Cursors */
-html {
-  cursor: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 32 32'%3E%3Cpath d='M6 3l14 9-5 1 4 8-2 1-4-8-3 3Z' fill='black' transform='translate(2, 2)'/%3E%3Cpath d='M6 3l14 9-5 1 4 8-2 1-4-8-3 3Z' fill='%23FFE600' stroke='black' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 9 4, auto;
-}
-
-a, button, input, textarea, select, [role="button"], .neo-btn, .neo-box, .neo-box-lg {
-  cursor: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 32 32'%3E%3Cpath d='M10 2a2 2 0 0 1 2 2v6.5a1 1 0 0 0 2 0V7.5a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v1.5a2 2 0 0 1 2 2v3.5A7.5 7.5 0 0 1 16.5 22.5h-5A7.5 7.5 0 0 1 4 15V9a2 2 0 0 1 4 0v1.5a1 1 0 0 0 2 0V4a2 2 0 0 1 2-2z' fill='black' transform='translate(2, 2)'/%3E%3Cpath d='M10 2a2 2 0 0 1 2 2v6.5a1 1 0 0 0 2 0V7.5a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v1.5a2 2 0 0 1 2 2v3.5A7.5 7.5 0 0 1 16.5 22.5h-5A7.5 7.5 0 0 1 4 15V9a2 2 0 0 1 4 0v1.5a1 1 0 0 0 2 0V4a2 2 0 0 1 2-2z' fill='%2339FF14' stroke='black' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 15 3, pointer !important;
-}
-
-/* Custom overrides to force playcaptcha to be Neo-Brutalist */
-.clawcap {
-  border: 4px solid #000000 !important;
-  box-shadow: 8px 8px 0px 0px #000000 !important;
-  border-radius: 0px !important;
-
-  /* Responsive scaling to make sure skip button is visible on mobile and smaller viewports */
-  transform: scale(0.9);
-  transform-origin: center center;
-  margin: -20px 0;
-}
-
-@media (max-height: 800px) {
-  .clawcap {
-    transform: scale(0.8);
-    margin: -45px 0;
-  }
-}
-
-@media (max-height: 700px) {
-  .clawcap {
-    transform: scale(0.7);
-    margin: -70px 0;
-  }
-}
-
-@media (max-height: 600px) {
-  .clawcap {
-    transform: scale(0.6);
-    margin: -95px 0;
-  }
-}
-
-.clawcap-info-card, .clawcap-info-tile {
-  border: 3px solid #000000 !important;
-  border-radius: 0px !important;
-}
-
-.clawcap-info-done {
-  border: 3px solid #000000 !important;
-  box-shadow: 4px 4px 0px 0px #000000 !important;
-  border-radius: 0px !important;
-}
-
-.clawcap-info-done:active {
-  transform: translate(2px, 2px) !important;
-  box-shadow: 2px 2px 0px 0px #000000 !important;
-}
-
-.clawcap button, .clawcap .cc-joy, .clawcap .cc-action {
-  cursor: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 32 32'%3E%3Cpath d='M10 2a2 2 0 0 1 2 2v6.5a1 1 0 0 0 2 0V7.5a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v1.5a2 2 0 0 1 2 2v3.5A7.5 7.5 0 0 1 16.5 22.5h-5A7.5 7.5 0 0 1 4 15V9a2 2 0 0 1 4 0v1.5a1 1 0 0 0 2 0V4a2 2 0 0 1 2-2z' fill='black' transform='translate(2, 2)'/%3E%3Cpath d='M10 2a2 2 0 0 1 2 2v6.5a1 1 0 0 0 2 0V7.5a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v1.5a2 2 0 0 1 2 2v3.5A7.5 7.5 0 0 1 16.5 22.5h-5A7.5 7.5 0 0 1 4 15V9a2 2 0 0 1 4 0v1.5a1 1 0 0 0 2 0V4a2 2 0 0 1 2-2z' fill='%2339FF14' stroke='black' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E") 15 3, pointer !important;
-}
-
-/* Lenis Smooth Scroll Configuration */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis-scrolling iframe {
-  pointer-events: none;
+  opacity: 1;
+  transform: translateY(0);
 }

@@ -231,9 +231,9 @@ const certificates = [
 ];
 ---
 
-<Layout title="Masykster | Web Developer Portfolio" description="Portofolio pribadi Masykster - Web Developer profesional dengan keahlian di Astro, React, dan gaya desain Neo-Brutalisme yang unik.">
+<Layout title="Abdullah Masykur | Software Engineer & Web Developer" description="Portofolio Abdullah Masykur - Web Developer & Software Engineer berlokasi di Surabaya dengan spesialisasi Astro, React, Laravel, dan Neobrutalisme.">
   <!-- Captcha Entrance Gate Overlay -->
-  <div id="captcha-gate" class="fixed inset-0 z-[100] bg-[#F4F4F0] flex flex-col items-center justify-start sm:justify-center p-4 overflow-y-auto py-8 sm:py-12 transition-all duration-500 ease-out select-none">
+  <div id="captcha-gate" class="fixed inset-0 z-[100] bg-[#FAF2E6] dark:bg-[#262320] flex flex-col items-center justify-start sm:justify-center p-4 overflow-y-auto py-8 sm:py-12 transition-all duration-500 ease-out select-none">
     <div class="w-full max-w-md flex flex-col items-center my-auto">
       <ClawCaptchaWrapper client:load />
       
@@ -244,89 +244,50 @@ const certificates = [
     </div>
   </div>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-20 sm:pt-24 pb-8 font-sans overflow-hidden">
+  <main class="font-sans space-y-12">
     
-    <!-- FLOATING TOP NAVBAR (neobrutalism-templates/portfolio style) -->
-    <div class="fixed top-5 left-0 z-50 w-full flex justify-center px-4">
-      <nav class="neo-box bg-white dark:bg-[#1E1E1E] text-black dark:text-white flex items-center gap-1.5 sm:gap-4 border-2 border-black dark:border-white p-2 px-3 sm:px-6 rounded-[5px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] text-xs sm:text-base font-extrabold">
-        <a href="/" class="border-2 border-black dark:border-white bg-[#FFE600] text-black font-extrabold px-2.5 py-1 rounded-[5px] transition-colors">Home</a>
-        <a href="/projek" class="text-black dark:text-white hover:border-black dark:hover:border-white rounded-[5px] border-2 border-transparent px-2.5 py-1 transition-colors">Projek</a>
-        <a href="#keahlian" class="text-black dark:text-white hover:border-black dark:hover:border-white rounded-[5px] border-2 border-transparent px-2.5 py-1 transition-colors">Keahlian</a>
-        <a href="/sertifikat" class="text-black dark:text-white hover:border-black dark:hover:border-white rounded-[5px] border-2 border-transparent px-2.5 py-1 transition-colors">Sertifikat</a>
-        <a href="#kontak" class="text-black dark:text-white hover:border-black dark:hover:border-white rounded-[5px] border-2 border-transparent px-2.5 py-1 transition-colors">Kontak</a>
-        <button
-          id="theme-toggle"
-          aria-label="Toggle Dark Mode"
-          class="text-black dark:text-white hover:border-black dark:hover:border-white rounded-[5px] border-2 border-transparent p-1 transition-colors cursor-pointer ml-1"
-        >
-          <!-- Moon Icon (Light mode) -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 block dark:hidden text-black stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-          </svg>
-          <!-- Sun Icon (Dark mode) -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden dark:block text-[#FFE600] stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-          </svg>
-        </button>
-      </nav>
-    </div>
-
-    <!-- HERO SECTION -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 mb-12 sm:mb-16 reveal-on-scroll reveal-in delay-75">
-      <!-- Title & Intro (Left Side) -->
-      <div class="lg:col-span-8 neo-box-lg bg-white p-6 sm:p-10 flex flex-col justify-between">
-        <div>
-          <div class="inline-block bg-[#39FF14] text-black font-extrabold text-xs sm:text-sm px-3 py-1.5 border-2 border-black mb-6 uppercase tracking-wider transform -rotate-1">
-            Web Developer & Designer
-          </div>
-          <h1 class="text-3xl sm:text-5xl md:text-6xl font-black font-heading leading-[1.05] tracking-tight mb-6">
-            Halo, Saya <span class="bg-[#FFE600] inline-block px-2 border-2 border-black my-1 transform -rotate-1">Abdullah Masykur</span> — Membuat Web Cepat &amp; Berbeda.
-          </h1>
-          <p class="text-base sm:text-lg md:text-xl font-medium text-gray-700 leading-relaxed mb-8 max-w-2xl">
-            Saya adalah pengembang web profesional yang berfokus pada performa tinggi, aksesibilitas, dan antarmuka pengguna yang berani serta tidak konvensional.
-          </p>
-        </div>
-
-        <div class="flex flex-wrap gap-4">
-          <a href="/projek" class="neo-btn bg-[#FFE600] text-black px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base font-extrabold">
-            Lihat Projek
-          </a>
-          <a href="#" class="neo-btn bg-white text-black px-6 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base font-extrabold border-3 border-black">
-            Unduh CV (PDF)
-          </a>
-        </div>
+    <!-- HERO / HOME SECTION -->
+    <section id="home" class="neo-box-lg bg-white p-6 sm:p-10">
+      <div class="inline-block bg-[#39FF14] text-black font-black text-xs sm:text-sm px-3 py-1 border-2 border-black mb-4 uppercase tracking-wider rounded-[5px] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+        Software Engineer &amp; Web Developer
       </div>
+      
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black font-heading tracking-tight mb-3">
+        Abdullah Masykur
+      </h1>
+      
+      <p class="text-lg sm:text-xl font-bold text-[#FF6B00] mb-6">
+        D4 Manajemen Informatika — Universitas Negeri Surabaya (GPA 3.93)
+      </p>
 
-      <!-- Quick Badges & Availability (Right Side) -->
-      <div class="lg:col-span-4 flex flex-col gap-6 sm:gap-8">
-        <!-- Status Box -->
-        <div class="neo-box bg-[#00E5FF] p-6 sm:p-8 flex flex-col justify-between flex-1">
-          <h2 class="text-xl sm:text-2xl font-black font-heading tracking-tight mb-4">Ketersediaan Kerja</h2>
-          <div class="neo-box bg-white p-4 font-bold flex items-center justify-between">
-            <span>Status</span>
-            <span class="inline-flex items-center bg-[#39FF14] border-2 border-black px-2.5 py-1 text-xs">
-              Tersedia 🟢
-            </span>
-          </div>
-          <p class="text-sm font-semibold mt-4 text-gray-800">
-            Terbuka untuk proyek freelance, kontrak, dan posisi penuh waktu. Let's build something unique!
-          </p>
-        </div>
+      <p class="text-base sm:text-lg font-semibold text-gray-800 leading-relaxed mb-8">
+        Halo! Saya Abdullah Masykur (Masykster), pengembang web profesional yang berfokus pada performa tinggi, aksesibilitas, dan antarmuka pengguna yang berani serta unik berbasis Neobrutalisme. Terbiasa membangun aplikasi full-stack menggunakan Astro, React, Laravel, Next.js, dan Flutter.
+      </p>
 
-        <!-- Tech Quick Box -->
-        <div class="neo-box bg-[#FF6B00] text-white p-6 sm:p-8 flex-1">
-          <h2 class="text-xl sm:text-2xl font-black font-heading tracking-tight mb-4">Fokus Utama</h2>
-          <div class="flex flex-wrap gap-2 text-black text-xs font-extrabold">
-            <span class="bg-white border-2 border-black px-2.5 py-1 transform rotate-1">Laravel</span>
-            <span class="bg-white border-2 border-black px-2.5 py-1 transform -rotate-2">React</span>
-            <span class="bg-white border-2 border-black px-2.5 py-1 transform rotate-2">Next.js</span>
-            <span class="bg-white border-2 border-black px-2.5 py-1 transform -rotate-1">Flutter</span>
-            <span class="bg-white border-2 border-black px-2.5 py-1">Tailwind</span>
-          </div>
-        </div>
+      <!-- Quick Social Links (neobrutalism-templates style) -->
+      <div class="flex flex-wrap gap-3 sm:gap-4">
+        <a href="https://github.com/Masykster" target="_blank" rel="noopener noreferrer" class="neo-btn bg-black text-white px-4 py-2.5 text-xs sm:text-sm font-extrabold flex items-center space-x-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          <span>GitHub</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/abdullah-masykur" target="_blank" rel="noopener noreferrer" class="neo-btn bg-[#0077B5] text-white px-4 py-2.5 text-xs sm:text-sm font-extrabold flex items-center space-x-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          <span>LinkedIn</span>
+        </a>
+
+        <a href="mailto:masykurabdullah.work@gmail.com" class="neo-btn bg-[#FFE600] text-black px-4 py-2.5 text-xs sm:text-sm font-extrabold flex items-center space-x-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span>Email</span>
+        </a>
+
+        <a href="/projek" class="neo-btn bg-[#00E5FF] text-black px-4 py-2.5 text-xs sm:text-sm font-extrabold flex items-center space-x-2">
+          <span>Lihat Karya &rarr;</span>
+        </a>
       </div>
     </section>
+
+
 
     <!-- SCROLL VELOCITY MARQUEE -->
     <div class="w-screen relative left-[50%] right-[50%] ml-[-50vw] mr-[-50vw] overflow-x-hidden my-14 sm:my-20 reveal-on-scroll">

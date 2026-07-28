@@ -8,8 +8,8 @@ interface Props {
 }
 
 const { 
-  title = 'Masykster | Web Developer Portfolio',
-  description = 'Portofolio profesional Masykster, seorang Web Developer yang berspesialisasi dalam membangun aplikasi web modern, cepat, dan unik dengan estetika Neo-Brutalisme.'
+  title = 'Abdullah Masykur | Software Engineer & Web Developer',
+  description = 'Portofolio Abdullah Masykur - Web Developer & Software Engineer berlokasi di Surabaya dengan spesialisasi Astro, React, Laravel, dan Neobrutalisme.'
 } = Astro.props;
 ---
 
@@ -60,10 +60,51 @@ const {
     <!-- Astro native Client Router for smooth page transitions -->
     <ClientRouter />
   </head>
-  <body class="bg-[#F4F4F0] text-[#000000] min-h-screen antialiased selection:bg-[#FFE600] selection:text-black transition-colors duration-200">
-    <slot />
+  <body class="min-h-screen antialiased selection:bg-[#FFE600] selection:text-black transition-colors duration-200">
+    
+    <!-- Floating Navbar in neobrutalism-templates style -->
+    <div class="fixed top-4 sm:top-5 left-0 z-50 w-full px-4">
+      <nav class="mx-auto flex w-max items-center gap-2 sm:gap-4 border-2 border-black rounded-[5px] bg-[#FF6B00] text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-2 px-3 sm:px-5 text-xs sm:text-base font-bold">
+        <a href="/" class="hover:border-black rounded-[5px] border-2 border-transparent hover:border-black hover:bg-white/20 px-2 py-1 transition-colors">
+          Home
+        </a>
+        <a href="/#about" class="hover:border-black rounded-[5px] border-2 border-transparent hover:border-black hover:bg-white/20 px-2 py-1 transition-colors">
+          About
+        </a>
+        <a href="/projek" class="hover:border-black rounded-[5px] border-2 border-transparent hover:border-black hover:bg-white/20 px-2 py-1 transition-colors">
+          Work
+        </a>
+        <a href="/sertifikat" class="hover:border-black rounded-[5px] border-2 border-transparent hover:border-black hover:bg-white/20 px-2 py-1 transition-colors">
+          Sertifikat
+        </a>
+        
+        <div class="border-l-2 border-black h-5 mx-0.5 sm:mx-1"></div>
 
-    <!-- Smooth scrolling library Lenis & Theme Toggle -->
+        <!-- Theme Switcher -->
+        <button
+          id="theme-toggle"
+          aria-label="Toggle Dark Mode"
+          class="neo-btn bg-white text-black p-1.5 w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center border-2 border-black rounded-[5px] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] transition-all cursor-pointer"
+        >
+          <!-- Moon Icon (Light mode) -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 block dark:hidden text-black stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+          <!-- Sun Icon (Dark mode) -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 hidden dark:block text-[#FFE600] stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Main Container with top padding for floating navbar -->
+    <div class="pt-24 sm:pt-28 pb-16 max-w-4xl mx-auto px-4 sm:px-6">
+      <slot />
+    </div>
+
+    <!-- Smooth scrolling library Lenis & Theme Toggle script -->
     <script>
       import Lenis from 'lenis';
 
@@ -74,7 +115,6 @@ const {
           lenis.destroy();
         }
 
-        // Initialize Lenis with smooth settings
         lenis = new Lenis({
           duration: 1.2,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -85,14 +125,12 @@ const {
           autoRaf: true,
         });
 
-        // Lock scroll initially if gate is active and sessionStorage is not verified
         const gate = document.getElementById('captcha-gate');
         const verifiedSession = sessionStorage.getItem('playcaptcha-verified');
         if (gate && verifiedSession !== 'true') {
           lenis.stop();
         }
 
-        // Window event listeners to freeze/unfreeze scroll from the captcha gate triggers
         window.addEventListener('lenis-stop', () => {
           lenis?.stop();
         });
@@ -101,7 +139,6 @@ const {
           lenis?.start();
         });
 
-        // Dark Mode Toggle Button Event Listener
         const themeBtn = document.getElementById('theme-toggle');
         if (themeBtn) {
           themeBtn.addEventListener('click', () => {
