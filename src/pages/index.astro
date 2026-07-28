@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import ClawCaptchaWrapper from '../components/ClawCaptchaWrapper';
 
 // Custom descriptions & tags for known repositories
-const customProjectMetadata: Record<string, { description?: string; tech?: string[]; color?: string; liveUrl?: string }> = {
+const customProjectMetadata: Record<string, { description?: string; tech?: string[]; color?: string }> = {
   "Angonku.id": {
     description: "Platform manajemen peternakan ayam broiler digital. Memantau FCR, IP Score, dan mortality rate secara real-time. Dilengkapi jadwal pemeliharaan otomatis, rekomendasi pakan, integrasi cuaca, push notification FCM, dan laporan PDF bankable untuk pengajuan KUR.",
     tech: ["React.js", "Inertia.js", "Laravel", "PostgreSQL", "Supabase", "Docker", "Sentry"],
@@ -13,7 +13,6 @@ const customProjectMetadata: Record<string, { description?: string; tech?: strin
     description: "Aplikasi streaming film berbasis Next.js dengan App Router. Di-deploy langsung ke stre4mit.vercel.app — dapat diakses publik tanpa setup lokal.",
     tech: ["Next.js", "JavaScript", "Tailwind CSS", "App Router", "Vercel"],
     color: "#00E5FF",
-    liveUrl: "https://stre4mit.vercel.app",
   },
   "DailyBit": {
     description: "Gamified habit tracker dan daily diary mobile app. Mendukung tiga tipe habit, sistem streak, mood tracking, achievement, cloud sync real-time, dan notifikasi harian. Rilis resmi v1.0.0.",
@@ -39,7 +38,6 @@ const customProjectMetadata: Record<string, { description?: string; tech?: strin
     description: "Platform katalog dan informasi film berbasis Laravel dan Blade. Arsitektur MVC Laravel dengan server-side rendering menggunakan Blade templating engine.",
     tech: ["Blade", "CSS", "Laravel", "PHP", "MySQL"],
     color: "#39FF14",
-    liveUrl: "https://cinevora-rouge.vercel.app",
   }
 };
 
@@ -49,8 +47,7 @@ interface ProjectItem {
   title: string;
   description: string;
   tech: string[];
-  liveUrl: string | null;
-  hasDemo: boolean;
+  liveUrl: string;
   githubUrl: string;
   color: string;
   stars?: number;
@@ -83,15 +80,14 @@ try {
           }
         }
 
-        const homepageUrl = metadata.liveUrl || (repo.homepage && repo.homepage.trim() !== '' ? repo.homepage.trim() : null);
-        const hasDemo = Boolean(homepageUrl);
+        const homepage = repo.homepage ? repo.homepage.trim() : '';
+        const validLiveUrl = (homepage !== '' && homepage !== repo.html_url && homepage !== '#') ? homepage : '';
 
         return {
           title: repo.name,
           description: metadata.description || repo.description || "Proyek open-source publik dikembangkan oleh Masykster yang tersedia di GitHub.",
           tech: techList,
-          liveUrl: homepageUrl,
-          hasDemo,
+          liveUrl: metadata.liveUrl || validLiveUrl,
           githubUrl: repo.html_url,
           color: metadata.color || neoColors[idx % neoColors.length],
           stars: repo.stargazers_count
@@ -109,8 +105,7 @@ if (!projects.length) {
       title: "Angonku.id",
       description: "Platform manajemen peternakan ayam broiler digital. Memantau FCR, IP Score, dan mortality rate secara real-time.",
       tech: ["React.js", "Inertia.js", "Laravel", "PostgreSQL"],
-      liveUrl: null,
-      hasDemo: false,
+      liveUrl: "",
       githubUrl: "https://github.com/Masykster/Angonku.id",
       color: "#FFE600"
     },
@@ -119,7 +114,6 @@ if (!projects.length) {
       description: "Aplikasi streaming film berbasis Next.js dengan App Router.",
       tech: ["Next.js", "JavaScript", "Tailwind CSS", "Vercel"],
       liveUrl: "https://stre4mit.vercel.app",
-      hasDemo: true,
       githubUrl: "https://github.com/Masykster/Stre4mit",
       color: "#00E5FF"
     },
@@ -127,8 +121,7 @@ if (!projects.length) {
       title: "DailyBit",
       description: "Gamified habit tracker dan daily diary mobile app.",
       tech: ["Flutter", "Dart", "Firebase"],
-      liveUrl: null,
-      hasDemo: false,
+      liveUrl: "",
       githubUrl: "https://github.com/Masykster/DailyBit",
       color: "#39FF14"
     }
@@ -352,16 +345,11 @@ const timeline = [
 
                 <!-- Links Buttons -->
                 <div class="flex items-center space-x-3">
-                  {project.hasDemo && project.liveUrl ? (
+                  {project.liveUrl && project.liveUrl !== '#' && (
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" class="neo-btn bg-[#FFE600] text-black text-xs font-extrabold px-3 py-2 flex items-center space-x-1">
                       <span>Demo</span>
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                     </a>
-                  ) : (
-                    <span class="bg-gray-200 text-gray-400 border-2 border-gray-400 text-xs font-extrabold px-3 py-2 flex items-center space-x-1 cursor-not-allowed opacity-60 select-none">
-                      <span>Demo Off</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                    </span>
                   )}
                   <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class="neo-btn bg-white text-black text-xs font-extrabold px-3 py-2 flex items-center space-x-1 border-3 border-black">
                     <span>GitHub</span>
