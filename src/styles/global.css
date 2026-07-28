@@ -23,15 +23,25 @@
   }
 
   /* Global High-Contrast Typography Fixes for Light & Dark Mode */
-  .text-gray-900,
-  .text-gray-800,
-  .text-gray-700,
-  .text-gray-600 {
+  html:not(.dark) .text-gray-900,
+  html:not(.dark) .text-gray-800,
+  html:not(.dark) .text-gray-700,
+  html:not(.dark) .text-gray-600 {
     color: #111827 !important; /* Deep dark black in light mode */
   }
 
-  .text-gray-500 {
+  html:not(.dark) .text-gray-500 {
     color: #374151 !important;
+  }
+
+  /* Dark Mode Card Backgrounds & High-Contrast Typography */
+  html.dark .neo-box,
+  html.dark .neo-box-lg,
+  html.dark article.bg-white,
+  html.dark section.bg-white,
+  html.dark div.bg-white:not(.keep-white) {
+    background-color: var(--secondary-background) !important;
+    color: var(--foreground) !important;
   }
 
   html.dark .text-gray-900,
@@ -47,7 +57,21 @@
   html.dark .bg-gray-50 {
     background-color: #27272A !important; /* zinc-800 */
     color: #FFFFFF !important;
-    border-color: #FFFFFF !important;
+    border-color: #52525B !important;
+  }
+
+  /* White buttons in dark mode keep solid white background with black text */
+  html.dark .neo-btn.bg-white,
+  html.dark a.neo-btn.bg-white,
+  html.dark button.neo-btn.bg-white {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+  }
+
+  html.dark .neo-btn.bg-white *,
+  html.dark a.neo-btn.bg-white *,
+  html.dark button.neo-btn.bg-white * {
+    color: #000000 !important;
   }
 
   html.dark .border-black {
