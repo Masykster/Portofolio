@@ -22,20 +22,36 @@
     --shadow: 4px 4px 0px 0px #000000;
   }
 
-  /* Global dark mode text contrast fixes */
-  html.dark .text-gray-700,
+  /* Global High-Contrast Typography Fixes for Light & Dark Mode */
+  .text-gray-900,
+  .text-gray-800,
+  .text-gray-700,
+  .text-gray-600 {
+    color: #111827 !important; /* Deep dark black in light mode */
+  }
+
+  .text-gray-500 {
+    color: #374151 !important;
+  }
+
+  html.dark .text-gray-900,
   html.dark .text-gray-800,
-  html.dark .text-gray-600 {
-    color: #E5E7EB; /* Tailwind gray-200 for crystal clear legibility in dark mode */
+  html.dark .text-gray-700,
+  html.dark .text-gray-600,
+  html.dark .text-gray-500,
+  html.dark .text-gray-400 {
+    color: #F9FAFB !important; /* Pure white in dark mode */
   }
 
-  html.dark .text-gray-500 {
-    color: #9CA3AF;
+  html.dark .bg-gray-100,
+  html.dark .bg-gray-50 {
+    background-color: #27272A !important; /* zinc-800 */
+    color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
   }
 
-  html.dark .bg-gray-100 {
-    background-color: #374151;
-    color: #F9FAFB;
+  html.dark .border-black {
+    border-color: #000000 !important;
   }
 }
 
