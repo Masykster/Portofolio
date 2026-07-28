@@ -65,7 +65,7 @@ const timeline = [
   <div class="font-sans space-y-10">
     
     <!-- TITLE BANNER -->
-    <div class="neo-box-lg bg-white p-6 sm:p-8">
+    <div class="neo-box-lg bg-white p-6 sm:p-8 reveal-scale">
       <div class="inline-block bg-[#FFE600] text-black font-extrabold text-xs sm:text-sm px-3 py-1 border-2 border-black mb-3 uppercase tracking-wider rounded-[5px] shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
         About Me
       </div>
@@ -101,38 +101,41 @@ const timeline = [
       </h2>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {skillCategories.map((category) => (
-          <div class="neo-box-lg bg-white overflow-hidden">
-            <div class={`${category.color} p-4 border-b-2 border-black`}>
-              <h3 class="text-lg font-black font-heading text-black uppercase">
-                {category.title}
-              </h3>
-            </div>
-            <div class="p-5">
-              <div class="flex flex-wrap gap-3 justify-center sm:justify-start">
-                {category.skills.map((skill) => (
-                  <div class="relative group flex justify-center items-center">
-                    <!-- Logo-Only Box (Solid White Background) -->
-                    <div class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center p-2.5 border-2 border-black rounded-[5px] !bg-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer">
-                      <img 
-                        src={skill.deviconUrl} 
-                        alt={skill.name} 
-                        loading="lazy" 
-                        class="w-7 h-7 sm:w-8 sm:h-8 object-contain"
-                      />
-                    </div>
+        {skillCategories.map((category, catIdx) => {
+          const animClass = catIdx === 0 ? 'reveal-left' : catIdx === 1 ? 'reveal-bottom' : 'reveal-right';
+          return (
+            <div class={`neo-box-lg bg-white overflow-hidden ${animClass}`}>
+              <div class={`${category.color} p-4 border-b-2 border-black`}>
+                <h3 class="text-lg font-black font-heading text-black uppercase">
+                  {category.title}
+                </h3>
+              </div>
+              <div class="p-5">
+                <div class="flex flex-wrap gap-3 justify-center sm:justify-start">
+                  {category.skills.map((skill) => (
+                    <div class="relative group flex justify-center items-center">
+                      <!-- Logo-Only Box (Solid White Background) -->
+                      <div class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center p-2.5 border-2 border-black rounded-[5px] !bg-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer">
+                        <img 
+                          src={skill.deviconUrl} 
+                          alt={skill.name} 
+                          loading="lazy" 
+                          class="w-7 h-7 sm:w-8 sm:h-8 object-contain"
+                        />
+                      </div>
 
-                    <!-- Neo-Brutalist Tooltip (Appears on Hover) -->
-                    <div class="absolute -top-11 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none z-30 whitespace-nowrap bg-white text-black font-black text-xs px-2.5 py-1 border-2 border-black rounded-[5px] shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:bg-[#1E1E1E] dark:text-white dark:border-white dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)]">
-                      {skill.name}
-                      <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-white dark:bg-[#1E1E1E] border-r-2 border-b-2 border-black dark:border-white rotate-45"></div>
+                      <!-- Neo-Brutalist Tooltip (Appears on Hover) -->
+                      <div class="absolute -top-11 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none z-30 whitespace-nowrap bg-white text-black font-black text-xs px-2.5 py-1 border-2 border-black rounded-[5px] shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:bg-[#1E1E1E] dark:text-white dark:border-white dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)]">
+                        {skill.name}
+                        <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-white dark:bg-[#1E1E1E] border-r-2 border-b-2 border-black dark:border-white rotate-45"></div>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
 
@@ -143,20 +146,23 @@ const timeline = [
       </h2>
 
       <div class="space-y-4">
-        {timeline.map((item) => (
-          <div class="neo-box bg-white p-6 flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-3">
-              <span class="neo-badge bg-[#FFE600] text-black">
-                {item.company}
-              </span>
-              <span class="text-xs font-bold text-gray-700 bg-gray-100 px-2.5 py-1 border border-black rounded-[4px]">
-                {item.period}
-              </span>
+        {timeline.map((item, tIdx) => {
+          const tAnimClass = tIdx % 2 === 0 ? 'reveal-left' : 'reveal-right';
+          return (
+            <div class={`neo-box bg-white p-6 flex flex-col justify-between ${tAnimClass}`}>
+              <div class="flex items-center justify-between mb-3">
+                <span class="neo-badge bg-[#FFE600] text-black">
+                  {item.company}
+                </span>
+                <span class="text-xs font-bold text-gray-700 bg-gray-100 px-2.5 py-1 border border-black rounded-[4px]">
+                  {item.period}
+                </span>
+              </div>
+              <h3 class="text-xl font-black font-heading mb-2">{item.role}</h3>
+              <p class="text-sm font-semibold text-gray-700 leading-relaxed">{item.description}</p>
             </div>
-            <h3 class="text-xl font-black font-heading mb-2">{item.role}</h3>
-            <p class="text-sm font-semibold text-gray-700 leading-relaxed">{item.description}</p>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
 
