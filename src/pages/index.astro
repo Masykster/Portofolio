@@ -2,42 +2,49 @@
 import Layout from '../layouts/Layout.astro';
 import ClawCaptchaWrapper from '../components/ClawCaptchaWrapper';
 
-// Custom descriptions & tags for known repositories
-const customProjectMetadata: Record<string, { description?: string; tech?: string[]; color?: string }> = {
+// Custom descriptions, tags, and optional Cloudinary images for known repositories
+const customProjectMetadata: Record<string, { description?: string; tech?: string[]; color?: string; imageUrl?: string }> = {
   "Angonku.id": {
     description: "Platform manajemen peternakan ayam broiler digital. Memantau FCR, IP Score, dan mortality rate secara real-time. Dilengkapi jadwal pemeliharaan otomatis, rekomendasi pakan, integrasi cuaca, push notification FCM, dan laporan PDF bankable untuk pengajuan KUR.",
     tech: ["React.js", "Inertia.js", "Laravel", "PostgreSQL", "Supabase", "Docker", "Sentry"],
     color: "#FFE600",
+    imageUrl: "", // Opsional: URL gambar Cloudinary
   },
   "Stre4mit": {
     description: "Aplikasi streaming film berbasis Next.js dengan App Router. Di-deploy langsung ke stre4mit.vercel.app — dapat diakses publik tanpa setup lokal.",
     tech: ["Next.js", "JavaScript", "Tailwind CSS", "App Router", "Vercel"],
     color: "#00E5FF",
+    imageUrl: "",
   },
   "DailyBit": {
     description: "Gamified habit tracker dan daily diary mobile app. Mendukung tiga tipe habit, sistem streak, mood tracking, achievement, cloud sync real-time, dan notifikasi harian. Rilis resmi v1.0.0.",
     tech: ["Flutter", "Dart", "Firebase Auth", "Firebase FCM", "Isar DB"],
     color: "#39FF14",
+    imageUrl: "",
   },
   "EcoFlow": {
     description: "Aplikasi web sustainability berbasis Laravel dengan REST API terdokumentasi menggunakan Postman collection (EcoStep API) dan CI/CD pipeline via GitHub Actions.",
     tech: ["Blade", "Tailwind CSS", "Laravel", "REST API", "GitHub Actions", "Postman"],
     color: "#FF6B00",
+    imageUrl: "",
   },
   "starling-s-coffeev2": {
     description: "Website e-commerce kedai kopi modern. Fitur: katalog menu, keranjang belanja, checkout (delivery/pickup), loyalty points & rewards, admin dashboard, manajemen pesanan, dan dark mode.",
     tech: ["HTML", "CSS", "JavaScript", "PHP Native", "MySQL"],
     color: "#FFE600",
+    imageUrl: "",
   },
   "Ascention": {
     description: "Aplikasi web SPA full-stack dengan Vue.js sebagai frontend dan Laravel sebagai backend. Arsitektur modern dengan database seeder dan schema populate.",
     tech: ["Vue.js", "Tailwind CSS", "Laravel", "PHP", "MySQL"],
     color: "#00E5FF",
+    imageUrl: "",
   },
   "Cinevora": {
     description: "Platform katalog dan informasi film berbasis Laravel dan Blade. Arsitektur MVC Laravel dengan server-side rendering menggunakan Blade templating engine.",
     tech: ["Blade", "CSS", "Laravel", "PHP", "MySQL"],
     color: "#39FF14",
+    imageUrl: "",
   }
 };
 
@@ -50,6 +57,7 @@ interface ProjectItem {
   liveUrl: string;
   githubUrl: string;
   color: string;
+  imageUrl?: string;
   stars?: number;
 }
 
@@ -90,6 +98,7 @@ try {
           liveUrl: metadata.liveUrl || validLiveUrl,
           githubUrl: repo.html_url,
           color: metadata.color || neoColors[idx % neoColors.length],
+          imageUrl: metadata.imageUrl || "",
           stars: repo.stargazers_count
         };
       });
@@ -196,6 +205,7 @@ const certificates = [
     credentialUrl: "https://www.dicoding.com",
     category: "Web Development",
     color: "#FFE600",
+    imageUrl: "", // Opsional: URL gambar dari Cloudinary
     description: "Sertifikasi kelulusan dasar pemrograman web melingkupi HTML5, CSS3, layouting responsif dengan Flexbox & Grid, serta pengenalan standar web W3C."
   },
   {
@@ -206,6 +216,7 @@ const certificates = [
     credentialUrl: "https://www.dicoding.com",
     category: "Frontend",
     color: "#00E5FF",
+    imageUrl: "",
     description: "Kompetensi pembuatan Single Page Application (SPA) modular berbasis React.js, State Management (Hooks & Context), dan konsumsi RESTful API."
   },
   {
@@ -216,6 +227,7 @@ const certificates = [
     credentialUrl: "https://www.dicoding.com",
     category: "Programming",
     color: "#39FF14",
+    imageUrl: "",
     description: "Penguasaan sintaksis modern ECMAScript 6+ (ES6+), Asynchronous JavaScript (Promises & Async/Await), Manipulasi DOM, dan OOP."
   },
   {
@@ -226,6 +238,7 @@ const certificates = [
     credentialUrl: "#",
     category: "Organisasi",
     color: "#FF6B00",
+    imageUrl: "",
     description: "Sertifikat penghargaan atas kontribusi aktif dalam Divisi Humas pada penyelenggaraan acara MI EXPO 2024 di Universitas Negeri Surabaya."
   }
 ];
@@ -261,7 +274,7 @@ const certificates = [
       </p>
 
       <p class="text-base sm:text-lg font-semibold text-gray-800 leading-relaxed mb-8">
-        Halo! Saya Abdullah Masykur (Masykster), pengembang web profesional yang berfokus pada performa tinggi, aksesibilitas, dan antarmuka pengguna yang berani serta unik berbasis Neobrutalisme. Terbiasa membangun aplikasi full-stack menggunakan Astro, React, Laravel, Next.js, dan Flutter.
+        Halo! Saya Abdullah Masykur , pengembang web profesional yang berfokus pada performa tinggi, aksesibilitas, dan antarmuka pengguna yang berani serta unik berbasis Neobrutalisme. Terbiasa membangun aplikasi full-stack menggunakan Astro, React, Laravel, Next.js, dan Flutter.
       </p>
 
       <!-- Quick Social Links (neobrutalism-templates style) -->
@@ -317,20 +330,31 @@ const certificates = [
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {projects.slice(0, 3).map((project, idx) => (
           <article class={`neo-box-lg bg-white flex flex-col justify-between overflow-hidden group reveal-on-scroll delay-${(idx + 1) * 75}`}>
-            {/* Visual Header */}
-            <div class="h-48 border-b-3 border-black bg-gray-200 relative flex items-center justify-center p-6 overflow-hidden" style={`background-color: ${project.color}33`}>
-              <div class="absolute inset-0 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] opacity-[0.07]"></div>
-              
-              <div class="w-3/4 h-32 border-3 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col p-3 transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-2">
-                <div class="flex items-center space-x-1.5 border-b-2 border-black pb-1.5 mb-2">
-                  <div class="w-2.5 h-2.5 rounded-full bg-red-500 border border-black"></div>
-                  <div class="w-2.5 h-2.5 rounded-full bg-yellow-500 border border-black"></div>
-                  <div class="w-2.5 h-2.5 rounded-full bg-green-500 border border-black"></div>
+            {/* Visual Header / Cloudinary Image */}
+            <div class="h-48 border-b-3 border-black bg-gray-200 relative flex items-center justify-center overflow-hidden">
+              {project.imageUrl ? (
+                <img 
+                  src={project.imageUrl} 
+                  alt={project.title} 
+                  loading="lazy"
+                  class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                />
+              ) : (
+                <div class="w-full h-full flex items-center justify-center p-6" style={`background-color: ${project.color}33`}>
+                  <div class="absolute inset-0 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] opacity-[0.07]"></div>
+                  
+                  <div class="w-3/4 h-32 border-3 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col p-3 transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-2">
+                    <div class="flex items-center space-x-1.5 border-b-2 border-black pb-1.5 mb-2">
+                      <div class="w-2.5 h-2.5 rounded-full bg-red-500 border border-black"></div>
+                      <div class="w-2.5 h-2.5 rounded-full bg-yellow-500 border border-black"></div>
+                      <div class="w-2.5 h-2.5 rounded-full bg-green-500 border border-black"></div>
+                    </div>
+                    <div class="flex-1 bg-gray-50 flex items-center justify-center font-heading font-black text-[11px] sm:text-xs uppercase tracking-wide border border-black/20 text-center px-1">
+                      {project.title}
+                    </div>
+                  </div>
                 </div>
-                <div class="flex-1 bg-gray-50 flex items-center justify-center font-heading font-black text-[11px] sm:text-xs uppercase tracking-wide border border-black/20 text-center px-1">
-                  {project.title}
-                </div>
-              </div>
+              )}
             </div>
 
             {/* Content info */}
@@ -601,6 +625,17 @@ const certificates = [
         {certificates.map((cert, idx) => (
           <div class={`neo-box-lg bg-white p-6 flex flex-col justify-between reveal-on-scroll delay-${(idx + 1) * 75}`}>
             <div>
+              {cert.imageUrl && (
+                <div class="mb-4 h-44 border-2 border-black rounded-[5px] bg-gray-100 overflow-hidden relative shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                  <img 
+                    src={cert.imageUrl} 
+                    alt={cert.title}
+                    loading="lazy"
+                    class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              )}
+
               <div class="flex items-center justify-between mb-4">
                 <span class="neo-badge bg-[#39FF14] text-black">
                   {cert.category}

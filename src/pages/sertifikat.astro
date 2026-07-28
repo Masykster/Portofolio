@@ -10,6 +10,7 @@ const certificates = [
     credentialUrl: "https://www.dicoding.com",
     category: "Web Development",
     color: "#FFE600",
+    imageUrl: "", // Opsional: URL gambar sertifikat dari Cloudinary
     description: "Sertifikasi kelulusan dasar pemrograman web melingkupi HTML5, CSS3, layouting responsif dengan Flexbox & Grid, serta pengenalan standar web W3C."
   },
   {
@@ -20,6 +21,7 @@ const certificates = [
     credentialUrl: "https://www.dicoding.com",
     category: "Frontend",
     color: "#00E5FF",
+    imageUrl: "",
     description: "Kompetensi pembuatan Single Page Application (SPA) modular berbasis React.js, State Management (Hooks & Context), dan konsumsi RESTful API."
   },
   {
@@ -30,6 +32,7 @@ const certificates = [
     credentialUrl: "https://www.dicoding.com",
     category: "Programming",
     color: "#39FF14",
+    imageUrl: "",
     description: "Penguasaan sintaksis modern ECMAScript 6+ (ES6+), Asynchronous JavaScript (Promises & Async/Await), Manipulasi DOM, dan OOP."
   },
   {
@@ -40,6 +43,7 @@ const certificates = [
     credentialUrl: "#",
     category: "Organisasi",
     color: "#FF6B00",
+    imageUrl: "",
     description: "Sertifikat penghargaan atas kontribusi aktif dalam Divisi Humas pada penyelenggaraan acara MI EXPO 2024 di Universitas Negeri Surabaya."
   }
 ];
@@ -66,6 +70,17 @@ const certificates = [
       {certificates.map((cert) => (
         <div class="neo-box-lg bg-white p-6 sm:p-8 flex flex-col justify-between group hover:-translate-y-1 transition-transform">
           <div>
+            {cert.imageUrl && (
+              <div class="mb-4 h-48 border-2 border-black rounded-[5px] bg-gray-100 overflow-hidden relative shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                <img 
+                  src={cert.imageUrl} 
+                  alt={cert.title}
+                  loading="lazy"
+                  class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            )}
+
             <div class="flex items-center justify-between mb-4">
               <span class="neo-badge bg-[#FFE600] text-black">
                 {cert.category}
