@@ -303,6 +303,7 @@ const certificates = [
         </a>
       </div>
 
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {projects.slice(0, 3).map((project, idx) => {
           const animClass = idx % 3 === 0 ? 'reveal-left' : idx % 3 === 1 ? 'reveal-bottom' : 'reveal-right';
           return (
