@@ -244,43 +244,33 @@ const certificates = [
     </div>
   </div>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-8 font-sans overflow-hidden">
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pt-20 sm:pt-24 pb-8 font-sans overflow-hidden">
     
-    <!-- HEADER SECTION -->
-    <header class="sticky top-4 z-50 mb-8 sm:mb-12 reveal-on-scroll reveal-in">
-      <div class="neo-box bg-white flex items-center justify-between p-4 px-6 md:px-8">
-        <a href="#" class="flex items-center space-x-2 text-xl sm:text-2xl font-extrabold tracking-wider font-heading hover:text-[#FF6B00] transition-colors">
-          <span class="bg-[#FFE600] px-2.5 py-1 border-2 border-black inline-block transform -rotate-2">M</span>
-          <span class="bg-[#00E5FF] px-2.5 py-1 border-2 border-black inline-block transform rotate-3 -ml-1">S</span>
-        </a>
-        
-        <!-- Desktop Nav -->
-        <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 font-bold">
-          <a href="/projek" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Projek</a>
-          <a href="#keahlian" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Keahlian</a>
-          <a href="/sertifikat" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Sertifikat</a>
-          <a href="#kontak" class="hover:underline hover:text-[#FF6B00] transition-colors decoration-3 underline-offset-4">Kontak</a>
-        </nav>
-
-        <div>
-          <button
-            id="theme-toggle"
-            aria-label="Toggle Dark Mode"
-            class="neo-btn bg-white dark:bg-[#1E1E1E] text-black dark:text-white w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center border-2 border-black dark:border-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] dark:shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[1px] hover:translate-y-[1px] transition-all cursor-pointer"
-          >
-            <!-- Moon Icon (Light mode) -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 block dark:hidden text-black stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-            </svg>
-            <!-- Sun Icon (Dark mode) -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden dark:block text-[#FFE600] stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="4"/>
-              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </header>
+    <!-- FLOATING TOP NAVBAR (neobrutalism-templates/portfolio style) -->
+    <div class="fixed top-5 left-0 z-50 w-full flex justify-center px-4">
+      <nav class="neo-box bg-white dark:bg-[#1E1E1E] text-black dark:text-white flex items-center gap-2 sm:gap-4 border-2 border-black dark:border-white p-2 px-4 sm:px-6 rounded-[5px] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] text-xs sm:text-base font-extrabold">
+        <a href="/" class="border-2 border-black dark:border-white bg-[#FFE600] text-black px-2.5 py-1 rounded-[5px] transition-colors">Home</a>
+        <a href="/projek" class="hover:border-black dark:hover:border-white rounded-[5px] border-2 border-transparent px-2.5 py-1 transition-colors">Projek</a>
+        <a href="#keahlian" class="hover:border-black dark:hover:border-white rounded-[5px] border-2 border-transparent px-2.5 py-1 transition-colors">Keahlian</a>
+        <a href="/sertifikat" class="hover:border-black dark:hover:border-white rounded-[5px] border-2 border-transparent px-2.5 py-1 transition-colors">Sertifikat</a>
+        <a href="#kontak" class="hover:border-black dark:hover:border-white rounded-[5px] border-2 border-transparent px-2.5 py-1 transition-colors">Kontak</a>
+        <button
+          id="theme-toggle"
+          aria-label="Toggle Dark Mode"
+          class="hover:border-black dark:hover:border-white rounded-[5px] border-2 border-transparent p-1 transition-colors cursor-pointer ml-1"
+        >
+          <!-- Moon Icon (Light mode) -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 block dark:hidden text-black stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+          <!-- Sun Icon (Dark mode) -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden dark:block text-[#FFE600] stroke-[2.5]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
 
     <!-- HERO SECTION -->
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 mb-12 sm:mb-16 reveal-on-scroll reveal-in delay-75">
