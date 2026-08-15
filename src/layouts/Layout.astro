@@ -6,12 +6,20 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  keywords?: string;
 }
 
 const { 
   title = 'Abdullah Masykur | Software Engineer & Web Developer',
-  description = 'Portofolio Abdullah Masykur - Web Developer & Software Engineer berlokasi di Surabaya dengan spesialisasi Astro, React, Laravel, dan Neobrutalisme.'
+  description = 'Portofolio Abdullah Masykur - Web Developer & Software Engineer berlokasi di Surabaya dengan spesialisasi Astro, React, Laravel, dan Neobrutalisme.',
+  image = 'https://masykster.is-a.dev/og-image.png',
+  keywords = 'Abdullah Masykur, Masykster, Portofolio, Web Developer, Software Engineer, Surabaya, Astro, React, Laravel, Next.js, Neobrutalisme, Frontend Developer, Fullstack Developer'
 } = Astro.props;
+
+const siteUrl = 'https://masykster.is-a.dev';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
+const ogImageURL = image.startsWith('http') ? image : new URL(image, siteUrl).href;
 ---
 
 <!doctype html>
@@ -19,24 +27,60 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="icon" href="favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="8d1kGEVyTtO8m5ulywFxlRrQBX3nQOZFGjBATcYNpgk" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
     
     <!-- SEO Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Abdullah Masykur" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:site_name" content="Abdullah Masykur Portfolio" />
+    <meta property="og:locale" content="id_ID" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImageURL} />
+    <meta name="twitter:creator" content="@Masykster" />
+
+    <!-- Schema.org JSON-LD Structured Data for Google -->
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Abdullah Masykur",
+      "alternateName": "Masykster",
+      "url": "https://masykster.is-a.dev/",
+      "jobTitle": "Software Engineer & Web Developer",
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Universitas Negeri Surabaya"
+      },
+      "sameAs": [
+        "https://github.com/Masykster",
+        "https://www.linkedin.com/in/abdullah-masykur"
+      ],
+      "knowsAbout": ["Web Development", "Astro", "React", "Laravel", "Next.js", "Flutter", "TypeScript", "Tailwind CSS", "Neobrutalism UI"]
+    })} />
 
     <!-- Inline Dark Mode initialization script to prevent FOUC -->
     <script is:inline>
