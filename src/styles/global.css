@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "../components/deskfolio/site.css";
+@import "../components/deskfolio/deskfolio-page.css";
+@import "../components/deskfolio/lib/deskfolio.css";
 
 @layer base {
   :root {
