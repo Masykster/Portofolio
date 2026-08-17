@@ -524,7 +524,7 @@ const DESKFOLIO_WARM_SRCS: string[] = [
       .filter((src) => !src.startsWith('__component:')), // skip component placeholders
   ),
   '/stickers/devices/github-ipad.svg', // dev-activity iPad shell
-  '/mort-profile.webp', // about-page avatar
+  '/profile.webp?v=3', // about-page avatar
 ]
 
 const STICKER_MENU_SETS = ['workspace', 'journal', 'stationery']
@@ -2237,7 +2237,7 @@ const PORTFOLIO_PAGES: React.ReactNode[] = [
     <LbSparkle className="df-doodle df-doodle--soft df-doodle--lilac" style={{ bottom: 165, right: 74, width: 14, height: 14 }} />
     <h3 className="df-hello">about me <span className="df-heart" aria-hidden="true">♡</span></h3>
     <div className="df-about-head">
-      <span className="df-avatar"><img src="/mort-profile.webp" alt="Abdullah Masykur" loading="lazy" decoding="async" /></span>
+      <span className="df-avatar"><img src="/profile.webp?v=3" alt="Abdullah Masykur" loading="lazy" decoding="async" /></span>
       <div>
         <Editable className="df-name" placeholder="your name" initial="Abdullah Masykur" />
         <span className="df-role"><LbSparkle /> Software Engineer &amp; Web Dev</span>
