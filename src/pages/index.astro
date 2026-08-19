@@ -1,13 +1,76 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { DeskFolioPage } from '../components/deskfolio/DeskFolioApp';
+
+const seoTitle = "Abdullah Masykur — Portofolio & Software Engineer | Masykster";
+const seoDesc = "Portofolio resmi Abdullah Masykur (Masykster) — Software Engineer & Web Developer dari Surabaya, mahasiswa D4 Manajemen Informatika Universitas Negeri Surabaya (UNESA). Spesialisasi Astro, React, Next.js, Laravel, dan AI.";
+const seoKeywords = "Abdullah Masykur, Masykster, Portofolio Abdullah Masykur, Abdullah Masykur UNESA, Abdullah Masykur Surabaya, Software Engineer, Web Developer, Web Developer Surabaya, D4 Manajemen Informatika UNESA, Universitas Negeri Surabaya, Astro Developer, React Developer, Laravel Developer, Next.js Developer, Frontend Developer, Fullstack Developer, DeskFolio, Angonku.id, CuanLagi-AI, EcoFlow, DailyBit, Ascendemy";
 ---
 
 <Layout 
-  title="DeskFolio Abdullah Masykur" 
-  description="A pocket-sized portfolio that opens like a book: flip-through pages, draggable stickers, and hand-drawn scribble underlines. Karya Abdullah Masykur."
+  title={seoTitle} 
+  description={seoDesc}
+  keywords={seoKeywords}
   deskfolio={true}
 >
+  <!-- Accessible Server-Rendered Semantic SEO Content for Search Engine Crawlers (Googlebot) -->
+  <header class="sr-only">
+    <h1>Abdullah Masykur — Portofolio & Software Engineer</h1>
+    <p>Selamat datang di portofolio resmi Abdullah Masykur (dikenal juga sebagai Masykster), seorang Software Engineer dan Web Developer yang berdomisili di Surabaya, Indonesia.</p>
+  </header>
+
+  <section class="sr-only" aria-label="Tentang Abdullah Masykur">
+    <h2>Tentang Abdullah Masykur</h2>
+    <p>Abdullah Masykur adalah mahasiswa D4 Manajemen Informatika di Universitas Negeri Surabaya (UNESA) dengan IPK 3.93. Berpengalaman sebagai Web Developer Intern di Ascendemy dan berfokus pada pengembangan aplikasi web modern, arsitektur frontend (Astro, React.js, Next.js, Tailwind CSS), backend engineering (Laravel, PostgreSQL, REST API), serta integrasi kecerdasan buatan (AI).</p>
+    
+    <h2>Keahlian & Teknologi</h2>
+    <ul>
+      <li>Frontend: Astro, React.js, Next.js, TypeScript, Tailwind CSS, Vue.js, Inertia.js, HTML5, CSS3, JavaScript</li>
+      <li>Backend & Database: Laravel, PHP, PostgreSQL, Supabase, Firebase, MySQL, REST API</li>
+      <li>Mobile & Tools: Flutter, Dart, Docker, Git, GitHub, Postman, Sentry, Vercel</li>
+      <li>Fokus & Minat: Clean Architecture, Micro-interactions, UI/UX Design, Performance, SEO</li>
+    </ul>
+
+    <h2>Proyek Unggulan</h2>
+    <article>
+      <h3>Angonku.id</h3>
+      <p>Platform manajemen peternakan ayam broiler digital dengan kalkulasi FCR, IP score real-time, jadwal otomatis, dan laporan PDF bankable.</p>
+      <a href="https://github.com/Masykster/angonku-id">GitHub Angonku.id</a>
+    </article>
+    <article>
+      <h3>CuanLagi-AI</h3>
+      <p>Platform asisten finansial pintar berbasis AI untuk analisis keuangan, pencatatan otomatis, dan optimasi investasi.</p>
+      <a href="https://github.com/Masykster/CuanLagi-AI">GitHub CuanLagi-AI</a>
+    </article>
+    <article>
+      <h3>EcoFlow</h3>
+      <p>Aplikasi web sustainability dengan REST API terdokumentasi dan CI/CD pipeline via GitHub Actions.</p>
+      <a href="https://github.com/Masykster/EcoFlow">GitHub EcoFlow</a>
+    </article>
+    <article>
+      <h3>DailyBit</h3>
+      <p>Gamified habit tracker dan daily journaling mobile app dengan streak dan cloud sync real-time berbasis Flutter.</p>
+      <a href="https://github.com/Masykster/DailyBit">GitHub DailyBit</a>
+    </article>
+
+    <h2>Pendidikan & Pengalaman</h2>
+    <ul>
+      <li>Web Developer Intern di Ascendemy (2026 – Sekarang)</li>
+      <li>D4 Manajemen Informatika di Universitas Negeri Surabaya (UNESA) (2024 – Sekarang, IPK 3.93)</li>
+      <li>Divisi Humas MI EXPO di Hima Manajemen Informatika UNESA (2024)</li>
+      <li>Peminatan MIPA di SMA Negeri 13 Surabaya (2021 – 2024)</li>
+    </ul>
+
+    <h2>Kontak & Media Sosial</h2>
+    <ul>
+      <li>GitHub: <a href="https://github.com/Masykster">https://github.com/Masykster</a></li>
+      <li>LinkedIn: <a href="https://www.linkedin.com/in/abdullah-masykur">https://www.linkedin.com/in/abdullah-masykur</a></li>
+      <li>Email: <a href="mailto:masykur6060@gmail.com">masykur6060@gmail.com</a></li>
+      <li>Website: <a href="https://masykster.is-a.dev/">https://masykster.is-a.dev/</a></li>
+    </ul>
+  </section>
+
+  <!-- Interactive 3D DeskFolio Client Application -->
   <main class="page page-bleed page-deskfolio">
     <DeskFolioPage client:only="react" />
   </main>

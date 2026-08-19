@@ -12,10 +12,10 @@ interface Props {
 }
 
 const { 
-  title = 'Abdullah Masykur — DeskFolio',
-  description = 'Portofolio interaktif Abdullah Masykur berbentuk buku 3D di atas meja kerja interaktif, lengkap dengan animasi pegas dan stiker.',
-  image = 'https://masykster.is-a.dev/og-image.png',
-  keywords = 'Abdullah Masykur, Masykster, Portofolio, Web Developer, Software Engineer, Surabaya, Astro, React, Laravel, Deskfolio, Motion, Frontend Developer, Fullstack Developer',
+  title = 'Abdullah Masykur — Portofolio & Software Engineer | Masykster',
+  description = 'Portofolio resmi Abdullah Masykur (Masykster) — Software Engineer & Web Developer dari Surabaya, mahasiswa D4 Manajemen Informatika Universitas Negeri Surabaya (UNESA). Berpengalaman dalam Astro, React, Next.js, Laravel, dan AI.',
+  image = 'https://masykster.is-a.dev/profile.webp',
+  keywords = 'Abdullah Masykur, Masykster, Portofolio Abdullah Masykur, Abdullah Masykur UNESA, Abdullah Masykur Surabaya, Software Engineer, Web Developer, Web Developer Surabaya, D4 Manajemen Informatika UNESA, Universitas Negeri Surabaya, Astro Developer, React Developer, Laravel Developer, Next.js, Frontend Developer, Fullstack Developer, DeskFolio, Angonku.id, CuanLagi-AI, EcoFlow, DailyBit, Ascendemy',
   deskfolio = true
 } = Astro.props;
 
@@ -54,7 +54,7 @@ const ogImageURL = image.startsWith('http') ? image : new URL(image, siteUrl).hr
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <meta name="author" content="Abdullah Masykur" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     
     <!-- Open Graph / Facebook -->
@@ -63,7 +63,8 @@ const ogImageURL = image.startsWith('http') ? image : new URL(image, siteUrl).hr
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL} />
-    <meta property="og:site_name" content="Abdullah Masykur Portfolio" />
+    <meta property="og:image:alt" content="Abdullah Masykur - Software Engineer & Web Developer Portfolio" />
+    <meta property="og:site_name" content="Abdullah Masykur Portfolio (Masykster)" />
     <meta property="og:locale" content="id_ID" />
     
     <!-- Twitter -->
@@ -74,23 +75,90 @@ const ogImageURL = image.startsWith('http') ? image : new URL(image, siteUrl).hr
     <meta property="twitter:image" content={ogImageURL} />
     <meta name="twitter:creator" content="@Masykster" />
 
-    <!-- Schema.org JSON-LD Structured Data for Google -->
+    <!-- Schema.org JSON-LD Structured Data for Google Search Engine Knowledge Graph -->
     <script type="application/ld+json" is:inline set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Abdullah Masykur",
-      "alternateName": "Masykster",
-      "url": "https://masykster.is-a.dev/",
-      "jobTitle": "Software Engineer & Web Developer",
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Universitas Negeri Surabaya"
-      },
-      "sameAs": [
-        "https://github.com/Masykster",
-        "https://www.linkedin.com/in/abdullah-masykur"
-      ],
-      "knowsAbout": ["Web Development", "Astro", "React", "Laravel", "Next.js", "Flutter", "TypeScript", "Tailwind CSS", "Neobrutalism UI"]
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://masykster.is-a.dev/#person",
+          "name": "Abdullah Masykur",
+          "alternateName": ["Masykster", "Abdullah Masykur UNESA", "Masykur"],
+          "url": "https://masykster.is-a.dev/",
+          "image": "https://masykster.is-a.dev/profile.webp",
+          "jobTitle": "Software Engineer & Web Developer",
+          "description": "Software Engineer & Web Developer berlokasi di Surabaya dengan keahlian di bidang Astro, React, TypeScript, Next.js, Laravel, dan kecerdasan buatan (AI). Mahasiswa D4 Manajemen Informatika di Universitas Negeri Surabaya.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Surabaya",
+            "addressRegion": "Jawa Timur",
+            "addressCountry": "ID"
+          },
+          "alumniOf": [
+            {
+              "@type": "EducationalOrganization",
+              "name": "Universitas Negeri Surabaya",
+              "department": "D4 Manajemen Informatika",
+              "url": "https://unesa.ac.id"
+            },
+            {
+              "@type": "EducationalOrganization",
+              "name": "SMA Negeri 13 Surabaya"
+            }
+          ],
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Ascendemy",
+            "jobTitle": "Web Developer Intern"
+          },
+          "sameAs": [
+            "https://github.com/Masykster",
+            "https://www.linkedin.com/in/abdullah-masykur",
+            "mailto:masykur6060@gmail.com"
+          ],
+          "knowsAbout": [
+            "Software Engineering",
+            "Web Development",
+            "Frontend Development",
+            "Fullstack Development",
+            "Astro",
+            "React.js",
+            "Next.js",
+            "Laravel",
+            "TypeScript",
+            "Tailwind CSS",
+            "Flutter",
+            "PostgreSQL",
+            "Supabase",
+            "REST API",
+            "Artificial Intelligence",
+            "UI/UX Design"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://masykster.is-a.dev/#website",
+          "url": "https://masykster.is-a.dev/",
+          "name": "Abdullah Masykur — Portofolio & Software Engineer",
+          "description": "Portofolio resmi Abdullah Masykur (Masykster) — Software Engineer & Web Developer.",
+          "publisher": {
+            "@id": "https://masykster.is-a.dev/#person"
+          },
+          "inLanguage": ["id-ID", "en-US"]
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://masykster.is-a.dev/#profilepage",
+          "url": "https://masykster.is-a.dev/",
+          "name": "Abdullah Masykur Portfolio",
+          "isPartOf": {
+            "@id": "https://masykster.is-a.dev/#website"
+          },
+          "mainEntity": {
+            "@id": "https://masykster.is-a.dev/#person"
+          }
+        }
+      ]
     })} />
 
     <!-- Inline Dark Mode initialization script to prevent FOUC -->
